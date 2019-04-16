@@ -1,0 +1,28 @@
+{
+  "name": "kanban",
+  "version": "1.0.0",
+  "description": "API server for Kanban board website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wwang99/kanban.git"
+  },
+  "author": "William Wang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wwang99/kanban/issues"
+  },
+  "homepage": "https://github.com/wwang99/kanban#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}
