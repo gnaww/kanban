@@ -7,12 +7,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // 404, no matching route found
-app.use((req, res) => {
+app.use((_, res) => {
     res.status(404).send("Invalid API route");
 });
 
 // route for handling errors
-app.use((err, req, res) => {
+app.use((err, _, res) => {
     res.status(400).send(err);
 });
 
