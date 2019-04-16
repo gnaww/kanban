@@ -1,0 +1,12 @@
+# Features
+- Database backed by Firebase
+- User sign in/sign out
+    - Passwords encrypted using `bcryptjs`
+    - Users have their own Kanban board that is preserved across sessions
+- User have a login/signup page
+- Users can add and delete named boards
+    - Users can edit name of boards?
+- Users can add and delete items from their boards
+    - Users can edit item text?
+- Users can move items back and forth across boards
+- Users can reorder items on the boards
