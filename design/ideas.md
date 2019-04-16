@@ -10,3 +10,11 @@
     - Users can edit item text?
 - Users can move items back and forth across boards
 - Users can reorder items on the boards
+
+# Website Page Sketches
+## Login
+![login](login.png)
+## Signup
+![signup](signup.png)
+## Boards
+![board](board.png)
