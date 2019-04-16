@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+import './Board.css';
+import Item from './Item';
 
-class ContactCardsList extends Component {
+class Board extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,4 +20,4 @@ class ContactCardsList extends Component {
     }
 }
 
-export default ContactCardsList;
+export default Board;

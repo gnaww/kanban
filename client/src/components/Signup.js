@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
-import Board from './Board';
+import './Login.css';
 
-class BoardList extends Component {
+class Signup extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,4 +19,4 @@ class BoardList extends Component {
     }
 }
 
-export default BoardList;
+export default Signup;
