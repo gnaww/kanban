@@ -10,6 +10,8 @@
     - Users can edit item text?
 - Users can move items back and forth across boards
 - Users can reorder items on the boards
+- Anytime user changes the state of the kanban board, it should be automatically be saved to database
+    - May potentially have to add a save button that saves all changes to database instead of live saving
 
 # Website Page Sketches
 ## Login
