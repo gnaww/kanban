@@ -12,8 +12,10 @@ class Item extends Component {
     }
 
     render() {
+        let { id, content } = this.props;
         return (
             <div>
+                { `${id}) ${content}` }
             </div>
         );
     }

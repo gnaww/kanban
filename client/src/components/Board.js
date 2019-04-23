@@ -13,8 +13,13 @@ class Board extends Component {
     }
 
     render() {
+        let { name, items } = this.props;
         return (
             <div>
+                <h1>{ name }</h1>
+                <div>
+                    { items.map((item, idx) => <Item key={idx} id={idx} content={item} />) }
+                </div>
             </div>
         );
     }
