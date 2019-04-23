@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {
     BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 import BoardList from './components/BoardList';
-import Login from './components/Login';
-import SignUp from './components/Signup';
-import BadPage from './components/BadPage';
+import Login from './pages/Login';
+import SignUp from './pages/Signup';
+import BadPage from './pages/BadPage';
 import './App.css';
 
 class App extends Component {
