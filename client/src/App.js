@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
-import BoardList from './components/BoardList';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/Signup';
 import BadPage from './pages/BadPage';
@@ -27,7 +27,7 @@ class App extends Component {
                     </nav>
                     <div className="Container">
                         <Switch>
-                            <Route path="/" exact component={BoardList} />
+                            <Route path="/" exact component={Home} />
                             <Route path="/login" component={Login} />
                             <Route path="/signup" component={SignUp} />
                             <Route component={BadPage} />
