@@ -3,7 +3,7 @@ import {
     BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 import BoardList from './components/BoardList';
 import Login from './components/Login';
-import Signup from './components/Signup';
+import SignUp from './components/Signup';
 import BadPage from './components/BadPage';
 import './App.css';
 
@@ -18,18 +18,18 @@ class App extends Component {
                                 <Link to="/">Home</Link>
                             </li>
                             <li>
-                                <Link to="/about/">About</Link>
+                                <Link to="/login">Login</Link>
                             </li>
                             <li>
-                                <Link to="/users/">Users</Link>
+                                <Link to="/signup">Signup</Link>
                             </li>
                         </ul>
                     </nav>
                     <div className="Container">
                         <Switch>
                             <Route path="/" exact component={BoardList} />
-                            <Route path="/login/" component={Login} />
-                            <Route path="/signup/" component={Signup} />
+                            <Route path="/login" component={Login} />
+                            <Route path="/signup" component={SignUp} />
                             <Route component={BadPage} />
                         </Switch>
                     </div>
