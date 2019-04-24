@@ -6,7 +6,6 @@ class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            notification: '',
             username: '',
             password: '',
             passwordConfirm: ''
@@ -19,24 +18,24 @@ class SignUp extends Component {
     }
 
     signUp = async (event) => {
+        const { setNotification } = this.props;
         event.preventDefault();
 
-        this.setState({ notification: '' });
+        setNotification('');
         let { username, password, passwordConfirm } = this.state;
         username = username.trim();
         let valid = true;
         
         if (!username) {
             valid = false;
-            this.setState({ notification: 'Invalid username.' });
+            setNotification('Invalid username.');
         }
         else if (!password || !passwordConfirm || password !== passwordConfirm) {
             valid = false;
-            this.setState({ notification: 'Must enter a password and the passwords must match.' });
+            setNotification('Must enter a password and the passwords must match');
         }
         
         if (valid) {
-            console.log('go sign up');
             try {
                 const response = await fetch('/api/signup', {
                     method: 'POST',
@@ -49,12 +48,12 @@ class SignUp extends Component {
                     this.props.history.push("/");
                 }
                 else {
-                    this.setState({ notification: responseText });
+                    setNotification(responseText);
                 }
             }
             catch(err) {
                 console.log(err);
-                this.setState({ notification: 'An error occurred, please try again.' })
+                setNotification('An error occured, please try again.');
             }
         }
 
@@ -73,7 +72,7 @@ class SignUp extends Component {
     }
 
     render() {
-        const { notification } = this.state;
+        const { notification } = this.props;
 
         return (
             <div>

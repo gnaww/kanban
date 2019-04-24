@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {
-    BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/Signup';
@@ -8,6 +7,19 @@ import BadPage from './pages/BadPage';
 import './App.css';
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            notification: ''
+        };
+
+        this.setNotification = this.setNotification.bind(this);
+    }
+
+    setNotification = notification => {
+        this.setState({ notification });
+    }
+
     render() {
         return (
             <Router>
@@ -27,9 +39,9 @@ class App extends Component {
                     </nav>
                     <div className="Container">
                         <Switch>
-                            <Route path="/" exact component={Home} />
-                            <Route path="/login" component={Login} />
-                            <Route path="/signup" component={SignUp} />
+                            <Route path="/" exact render={() => <Home setNotification={this.setNotification} notification={this.state.notification} />}  />
+                            <Route path="/login" render={() => <Login setNotification={this.setNotification} notification={this.state.notification} />} />
+                            <Route path="/signup" render={() => <SignUp setNotification={this.setNotification} notification={this.state.notification} />} />
                             <Route component={BadPage} />
                         </Switch>
                     </div>
