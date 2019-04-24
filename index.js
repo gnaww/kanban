@@ -32,12 +32,45 @@ const db = admin.firestore();
 const usersCollection = db.collection('users');
 
 // logs in user
-app.post('/api/login', (req, res) => {
+app.post('/api/login', async (req, res) => {
+    console.log('start login route');
     const { username, password } = req.body;
-    // Load hash from your password DB.
-    bcrypt.compare("B4c0/\/", hash, function (err, res) {
-        // res === true
-    });
+
+    if (!username || !password) {
+        console.log('empty username/password during login');
+        return res.status(400).json('Invalid login credentials. Try again.');
+    }
+    else {
+        try {
+            const userDoc = await usersCollection.where('username', '==', username).get();
+            const user = userDoc.docs.map(doc => doc.data());
+            console.log('user', user);
+
+            if (user.length === 0) {
+                return res.status(200).json('No users matching username found.');
+            }
+            else {
+                bcrypt.compare("B4c0/\/", user[0].password, function (err, res) {
+                    if (err) {
+                        console.log('Error comparing password hashes: ', err);
+                        return res.status(200).json('Internal server error, please try again.');
+                    }
+
+                    // res === true if hash matches
+                    if (res) {
+                        req.session.user = user[0].username;
+                        return res.status(200).json('Successfully logged in!');
+                    } else {
+                        return res.status(200).json('Incorrect username or password.');
+                    }
+                });
+            }
+        }
+        catch(err) {
+            console.log(`Error querying users: ${err}`);
+            return res.json('Internal server error, please try again.');
+        }
+    }
 });
 
 // registers a new user
@@ -94,17 +127,22 @@ app.get('/api/logout', (req, res) => {
     req.session.destroy(function (err) {
         if (err) {
             console.log('Error logging out: ', err);
-            res.status(500).json('error logging out');
+            res.status(500).json('Error logging out, try again.');
         } else {
             console.log('successfully logged out');
-            res.status(200).json('successfully logged out');
+            res.status(200).json('success');
         }
     });
 });
 
 // checks if user is logged in and returns username
 app.get('/api/isloggedin', (req, res) => {
-
+    if (req.session.user) {
+        res.status(200).json(req.session.user);
+    }
+    else {
+        res.status(200).json('not logged in');
+    }
 });
 
 // 404, no matching route found
