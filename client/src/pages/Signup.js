@@ -32,7 +32,7 @@ class SignUp extends Component {
         }
         else if (!password || !passwordConfirm || password !== passwordConfirm) {
             valid = false;
-            setNotification('Must enter a password and the passwords must match');
+            setNotification('Must enter a password and the passwords must match.');
         }
         
         if (valid) {
