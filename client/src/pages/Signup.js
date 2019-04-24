@@ -53,7 +53,7 @@ class SignUp extends Component {
             }
             catch(err) {
                 console.log(err);
-                setNotification('An error occured, please try again.');
+                setNotification('An error occurred, please try again.');
             }
         }
 
