@@ -9,9 +9,6 @@ class Login extends Component {
         };
     }
 
-    componentDidMount = async () => {
-    }
-
     render() {
         return (
             <div>

@@ -9,9 +9,6 @@ class Home extends Component {
         };
     }
 
-    componentDidMount = async () => {
-    }
-
     render() {
         return (
             <div>
