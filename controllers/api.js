@@ -16,7 +16,7 @@ const login = (usersCollection, bcrypt) => async (req, res) => {
                 return res.status(200).json('No users matching username found.');
             }
             else {
-                bcrypt.compare("B4c0/\/", user[0].password, function (err, match) {
+                bcrypt.compare(password, user[0].password, function (err, match) {
                     if (err) {
                         console.log('Error comparing password hashes: ', err);
                         return res.status(200).json('Internal server error, please try again.');
@@ -70,6 +70,7 @@ const signup = (usersCollection, bcrypt) => async (req, res) => {
                             await usersCollection.add({ username: username, password: hash });
                             req.session.user = username;
                             console.log('successfully signed up user');
+                            console.log(req.session);
                             return res.status(200).json('Successfully signed up!');
                         }
                         catch (err) {
@@ -100,7 +101,10 @@ const logout = (req, res) => {
 };
 
 const isLoggedIn = (req, res) => {
+    console.log('is logged in');
+    console.log(req.session);
     if (req.session.user) {
+        console.log('helllooo');
         res.status(200).json(req.session.user);
     }
     else {
