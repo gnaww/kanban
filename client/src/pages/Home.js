@@ -7,6 +7,30 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            boards: [
+                {
+                    name: "Todo",
+                    items: [
+                        "lorem ipsum",
+                        "foo bar"
+                    ]
+                },
+                {
+                    name: "In Progress",
+                    items: [
+                        "in progress 1",
+                        "in progress 2"
+                    ]
+                },
+                {
+                    name: "Completed",
+                    items: [
+                        "completed 1",
+                        "completed 2",
+                        "completed 3"
+                    ]
+                }
+            ]
         };
 
         this.logout = this.logout.bind(this);
@@ -39,7 +63,7 @@ class Home extends Component {
                 <h1>Your Kanban Boards</h1>
                 <button type="button" onClick={this.logout}>Log Out</button>
                 { notification && <p>{notification}</p> }
-                <BoardList />
+                <BoardList boards={this.state.boards}/>
             </div>
         );
     }
