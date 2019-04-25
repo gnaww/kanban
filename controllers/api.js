@@ -1,5 +1,4 @@
 const login = (usersCollection, bcrypt) => async (req, res) => {
-    console.log('start login route');
     const { username, password } = req.body;
 
     if (!username || !password) {
@@ -10,7 +9,6 @@ const login = (usersCollection, bcrypt) => async (req, res) => {
         try {
             const userDoc = await usersCollection.where('username', '==', username).get();
             const user = userDoc.docs.map(doc => doc.data());
-            console.log('user', user);
 
             if (user.length === 0) {
                 return res.status(200).json('No users matching username found.');
@@ -40,7 +38,6 @@ const login = (usersCollection, bcrypt) => async (req, res) => {
 };
 
 const signup = (usersCollection, bcrypt) => async (req, res) => {
-    console.log('start signup route');
     let { username, password } = req.body;
 
     if (!username || !password) {
@@ -52,15 +49,12 @@ const signup = (usersCollection, bcrypt) => async (req, res) => {
         try {
             const existingUser = await usersCollection.where('username', '==', username).get();
             const usernameExists = existingUser.docs.some(doc => doc.data().username === username);
-            console.log('usernameExists', usernameExists);
 
             if (usernameExists) {
                 return res.status(400).json('Username already exists. Choose a different username.');
             }
             else {
-                console.log('signing up user');
                 bcrypt.hash(password, 10, async (err, hash) => {
-                    console.log('finished hashing');
                     if (err) {
                         console.log(`Error hashing: ${err}`);
                         return res.status(500).json('Internal server error, please try again.');
@@ -69,8 +63,6 @@ const signup = (usersCollection, bcrypt) => async (req, res) => {
                         try {
                             await usersCollection.add({ username: username, password: hash });
                             req.session.user = username;
-                            console.log('successfully signed up user');
-                            console.log(req.session);
                             return res.status(200).json('Successfully signed up!');
                         }
                         catch (err) {
@@ -94,17 +86,13 @@ const logout = (req, res) => {
             console.log('Error logging out: ', err);
             res.status(500).json('Error logging out, try again.');
         } else {
-            console.log('successfully logged out');
             res.status(200).json('success');
         }
     });
 };
 
 const isLoggedIn = (req, res) => {
-    console.log('is logged in');
-    console.log(req.session);
     if (req.session.user) {
-        console.log('helllooo');
         res.status(200).json(req.session.user);
     }
     else {
