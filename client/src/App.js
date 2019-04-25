@@ -4,7 +4,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/Signup';
 import BadPage from './pages/BadPage';
-import './App.css';
+import styles from './App.module.css';
+import 'typeface-roboto';
 
 class App extends Component {
     constructor(props) {
@@ -37,7 +38,7 @@ class App extends Component {
                             </li>
                         </ul>
                     </nav>
-                    <div className="Container">
+                    <div className={styles.Container}>
                         <Switch>
                             <Route path="/" exact render={() => <Home setNotification={this.setNotification} notification={this.state.notification} />}  />
                             <Route path="/login" render={() => <Login setNotification={this.setNotification} notification={this.state.notification} />} />

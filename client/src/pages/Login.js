@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Login.css';
+import styles from './Login.module.css';
 
 class Login extends Component {
     constructor(props) {
@@ -60,7 +60,7 @@ class Login extends Component {
         const { setNotification } = this.props;
         setNotification('');
     }
-    
+
     render() {
         const { notification } = this.props;
 
@@ -70,10 +70,10 @@ class Login extends Component {
                 {notification && <p>{notification}</p>}
                 <form onSubmit={this.login} >
                     <h3>Username</h3>
-                    <input className="InputBox" type="text" onChange={this.usernameChange} />
+                    <input className={styles.InputBox} type="text" onChange={this.usernameChange} />
                     <h3>Password</h3>
-                    <input className="InputBox" type="password" onChange={this.passwordChange} />
-                    <button className="Button">Log In</button>
+                    <input className={styles.InputBox} type="password" onChange={this.passwordChange} />
+                    <button className={styles.Button}>Log In</button>
                 </form>
                 <p>or <Link to="/signup">Signup</Link></p>
             </div>
