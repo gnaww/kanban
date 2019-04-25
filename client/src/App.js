@@ -41,19 +41,6 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/login">Login</Link>
-                        </li>
-                        <li>
-                            <Link to="/signup">Signup</Link>
-                        </li>
-                    </ul>
-                </nav>
                 <div className={styles.Container}>
                     <Switch>
                         <Route path="/" exact render={() => {
