@@ -56,6 +56,11 @@ class Login extends Component {
         this.setState({ password: event.target.value });
     }
 
+    componentDidMount = () => {
+        const { setNotification } = this.props;
+        setNotification('');
+    }
+    
     render() {
         const { notification } = this.props;
 

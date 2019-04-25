@@ -71,6 +71,11 @@ class SignUp extends Component {
         this.setState({ passwordConfirm: event.target.value });
     }
 
+    componentDidMount = () => {
+        const { setNotification } = this.props;
+        setNotification('');
+    }
+    
     render() {
         const { notification } = this.props;
 
