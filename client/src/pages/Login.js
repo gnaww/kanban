@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import styles from './Login.module.css';
 
 class Login extends Component {
@@ -27,6 +27,7 @@ class Login extends Component {
         }
         else {
             try {
+                setNotification('Loading...');
                 const response = await fetch('/api/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -81,4 +82,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);

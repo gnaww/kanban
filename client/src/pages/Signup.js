@@ -37,6 +37,7 @@ class SignUp extends Component {
         
         if (valid) {
             try {
+                setNotification('Loading...');
                 const response = await fetch('/api/signup', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
