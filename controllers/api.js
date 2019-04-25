@@ -16,14 +16,14 @@ const login = (usersCollection, bcrypt) => async (req, res) => {
                 return res.status(200).json('No users matching username found.');
             }
             else {
-                bcrypt.compare("B4c0/\/", user[0].password, function (err, res) {
+                bcrypt.compare("B4c0/\/", user[0].password, function (err, match) {
                     if (err) {
                         console.log('Error comparing password hashes: ', err);
                         return res.status(200).json('Internal server error, please try again.');
                     }
 
-                    // res === true if hash matches
-                    if (res) {
+                    // match === true if hash matches
+                    if (match) {
                         req.session.user = user[0].username;
                         return res.status(200).json('Successfully logged in!');
                     } else {
