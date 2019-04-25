@@ -34,7 +34,6 @@ class Login extends Component {
                     body: JSON.stringify({ username, password })
                 });
                 const responseText = await response.json();
-                console.log(responseText);
                 if (responseText === 'Successfully logged in!') {
                     this.props.history.push("/");
                 }
@@ -58,7 +57,8 @@ class Login extends Component {
     }
 
     componentDidMount = () => {
-        const { setNotification } = this.props;
+        const { setNotification, authenticate } = this.props;
+        authenticate();
         setNotification('');
     }
 

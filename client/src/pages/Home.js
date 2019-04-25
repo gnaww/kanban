@@ -7,7 +7,6 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: ''
         };
 
         this.logout = this.logout.bind(this);
@@ -17,7 +16,6 @@ class Home extends Component {
         const { setNotification } = this.props;
         const response = await fetch('/api/logout');
         const responseText = await response.json();
-        console.log(responseText);
 
         if (responseText === 'success') {
             this.props.history.push("/login");
@@ -27,21 +25,14 @@ class Home extends Component {
         }
     }
 
-    componentDidMount = async () => {
-        const { setNotification } = this.props;
+    componentDidMount = () => {
+        const { setNotification, authenticate } = this.props;
+        authenticate();
         setNotification('');
-        const response = await fetch('/api/isloggedin');
-        const responseText = await response.json();
-        console.log(responseText);
-
-        if (responseText !== 'not logged in') {
-            this.setState({ user: responseText });
-        }
     }
 
     render() {
-        const { notification } = this.props;
-        const { user } = this.state;
+        const { notification, user } = this.props;
         return (
             <div>
                 {user ? <h1>Welcome {user}!</h1> : <h1>Not logged in, go to <Link to="/login">Login</Link> to login</h1>}
