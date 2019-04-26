@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from "react-router-dom";
+import { withRouter, Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 import BoardList from '../components/BoardList';
 import styles from './Home.module.css';
 
@@ -61,7 +62,9 @@ class Home extends Component {
             <div>
                 {user ? <h1>Welcome {user}!</h1> : <h1>Not logged in, go to <Link to="/login">Login</Link> to login</h1>}
                 <h1>Your Kanban Boards</h1>
-                <button type="button" onClick={this.logout}>Log Out</button>
+                <Button type="submit" variant="contained" color="primary" onClick={this.logout}>
+                    Log Out
+                </Button>
                 { notification && <p>{notification}</p> }
                 <BoardList boards={this.state.boards}/>
             </div>

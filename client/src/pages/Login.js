@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 import styles from './Login.module.css';
 
 class Login extends Component {
@@ -74,7 +75,9 @@ class Login extends Component {
                     <input className={styles.InputBox} type="text" onChange={this.usernameChange} />
                     <h3>Password</h3>
                     <input className={styles.InputBox} type="password" onChange={this.passwordChange} />
-                    <button className={styles.Button}>Log In</button>
+                    <Button type="submit" variant="contained" fullWidth="true" color="primary">
+                        Log In
+                    </Button>
                 </form>
                 <p>or <Link to="/signup">Signup</Link></p>
             </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 import styles from './Login.module.css';
 
 class SignUp extends Component {
@@ -91,7 +92,9 @@ class SignUp extends Component {
                     <input className={styles.InputBox}type="password" onChange={this.passwordChange} />
                     <h3>Confirm Password</h3>
                     <input className={styles.InputBox}type="password" onChange={this.passwordConfirmChange} />
-                    <button className={styles.Button}>Sign Up!</button>
+                    <Button type="submit" variant="contained" fullWidth="true" color="primary">
+                        Sign Up
+                    </Button>
                 </form>
                 <p>or <Link to="/login">Login</Link></p>
             </div>
