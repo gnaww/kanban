@@ -33,21 +33,6 @@ class Home extends Component {
                 }
             ]
         };
-
-        this.logout = this.logout.bind(this);
-    }
-
-    logout = async (_) => {
-        const { setNotification } = this.props;
-        const response = await fetch('/api/logout');
-        const responseText = await response.json();
-
-        if (responseText === 'success') {
-            this.props.history.push("/login");
-        }
-        else {
-            setNotification(responseText);
-        }
     }
 
     componentDidMount = () => {
@@ -62,9 +47,6 @@ class Home extends Component {
             <div>
                 {user ? <h1>Welcome {user}!</h1> : <h1>Not logged in, go to <Link to="/login">Login</Link> to login</h1>}
                 <h1>Your Kanban Boards</h1>
-                <Button type="submit" variant="contained" color="primary" onClick={this.logout}>
-                    Log Out
-                </Button>
                 { notification && <p>{notification}</p> }
                 <BoardList boards={this.state.boards}/>
             </div>

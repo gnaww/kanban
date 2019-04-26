@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/Signup';
 import BadPage from './pages/BadPage';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import styles from './App.module.css';
 import 'typeface-roboto';
 
@@ -41,6 +43,7 @@ class App extends Component {
     render() {
         return (
             <Router>
+                <Header auth={this.state.auth} setNotification={this.setNotification} />
                 <div className={styles.Container}>
                     <Switch>
                         <Route path="/" exact render={() => {
@@ -55,6 +58,7 @@ class App extends Component {
                         <Route component={BadPage} />
                     </Switch>
                 </div>
+                <Footer />
             </Router>
         );
     }
