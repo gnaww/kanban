@@ -1,28 +1,18 @@
-import React, { Component } from 'react';
-import './Board.css';
+import React from 'react';
+import styles from './Board.module.css';
 import Item from './Item';
 
-class Board extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    }
+const Board = props => {
+    const { name, items } = props;
 
-    componentDidMount = async () => {
-    }
-
-    render() {
-        let { name, items } = this.props;
-        return (
+    return (
+        <div>
+            <h1>{ name }</h1>
             <div>
-                <h1>{ name }</h1>
-                <div>
-                    { items.map((item, idx) => <Item key={idx} id={idx} content={item} />) }
-                </div>
+                { items.map((item, idx) => <Item key={idx} id={idx} content={item} />) }
             </div>
-        );
-    }
+        </div>
+    );
 }
-
+        
 export default Board;

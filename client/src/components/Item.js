@@ -1,24 +1,13 @@
-import React, { Component } from 'react';
-import './Item.css';
+import React from 'react';
+import styles from './Item.module.css';
 
-class Item extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    }
-
-    componentDidMount = async () => {
-    }
-
-    render() {
-        let { id, content } = this.props;
-        return (
-            <div>
-                { `${id}) ${content}` }
-            </div>
-        );
-    }
+const Item = props => {
+    const { id, content } = props;
+    return (
+        <div>
+            { `${id}) ${content}` }
+        </div>
+    );
 }
 
 export default Item;
