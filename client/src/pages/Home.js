@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 import BoardList from '../components/BoardList';
 import styles from './Home.module.css';
 

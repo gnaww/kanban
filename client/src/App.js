@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/Signup';
@@ -43,22 +43,24 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <Header auth={this.state.auth} setNotification={this.setNotification} />
-                <div className={styles.Container}>
-                    <Switch>
-                        <Route path="/" exact render={() => {
-                            return this.state.auth ? <Home setNotification={this.setNotification} notification={this.state.notification} authenticate={this.authenticate} user={this.state.user} /> : <Redirect to="/login" />
-                        }} />
-                        <Route path="/login" render={() => {
-                            return this.state.auth ? <Redirect to="/" /> : <Login setNotification={this.setNotification} notification={this.state.notification} authenticate={this.authenticate} />
-                        }} />
-                        <Route path="/signup" render={() => {
-                            return this.state.auth ? <Redirect to="/" /> : <SignUp setNotification={this.setNotification} notification={this.state.notification} authenticate={this.authenticate} />
-                        }} />
-                        <Route component={BadPage} />
-                    </Switch>
+                <div className={styles.Wrapper}>
+                    <Header auth={this.state.auth} setNotification={this.setNotification} />
+                    <div className={styles.Container}>
+                        <Switch>
+                            <Route path="/" exact render={() => {
+                                return this.state.auth ? <Home setNotification={this.setNotification} notification={this.state.notification} authenticate={this.authenticate} user={this.state.user} /> : <Redirect to="/login" />
+                            }} />
+                            <Route path="/login" render={() => {
+                                return this.state.auth ? <Redirect to="/" /> : <Login setNotification={this.setNotification} notification={this.state.notification} authenticate={this.authenticate} />
+                            }} />
+                            <Route path="/signup" render={() => {
+                                return this.state.auth ? <Redirect to="/" /> : <SignUp setNotification={this.setNotification} notification={this.state.notification} authenticate={this.authenticate} />
+                            }} />
+                            <Route component={BadPage} />
+                        </Switch>
+                    </div>
+                    <Footer />
                 </div>
-                <Footer />
             </Router>
         );
     }
