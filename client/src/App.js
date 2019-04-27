@@ -50,7 +50,8 @@ class App extends Component {
         const pageProps = {
             setNotification: this.setNotification,
             notification: this.state.notification,
-            authenticate: this.authenticate
+            authenticate: this.authenticate,
+            nightmode: this.state.nightmode
         };
 
         const headerProps = {

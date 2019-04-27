@@ -85,14 +85,14 @@ class SignUp extends Component {
     }
 
     render() {
-        const { notification } = this.props;
+        const { notification, nightmode } = this.props;
         const { loading } = this.state;
 
         return (
             <div className={styles.UserForm}>
                 <div>
                     <h1>Sign Up</h1>
-                    { notification && <Paper className={styles.Notification}><span>Error: </span>{notification}</Paper> }
+                    { notification && <Paper className={nightmode ? styles.NotificationDark : styles.Notification}><span>Error: </span>{notification}</Paper> }
                     <form onSubmit={this.signUp}>
                         <h3>Username</h3>
                         <input className={styles.InputBox} type="text" onChange={this.usernameChange} />
