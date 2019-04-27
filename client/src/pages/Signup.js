@@ -33,7 +33,7 @@ class SignUp extends Component {
         if (!username) {
             valid = false;
             this.setState({ loading: false });
-            setNotification('Invalid username.');
+            setNotification('Invalid or empty username.');
         }
         else if (!password || !passwordConfirm || password !== passwordConfirm) {
             valid = false;
@@ -95,11 +95,11 @@ class SignUp extends Component {
                     { notification && <Paper className={nightmode ? styles.NotificationDark : styles.Notification}><span>Error: </span>{notification}</Paper> }
                     <form onSubmit={this.signUp}>
                         <h3>Username</h3>
-                        <input className={styles.InputBox} type="text" onChange={this.usernameChange} />
+                        <input className={styles.InputBox} type="text" onChange={this.usernameChange} required />
                         <h3>Password</h3>
-                        <input className={styles.InputBox}type="password" onChange={this.passwordChange} />
+                        <input className={styles.InputBox} type="password" onChange={this.passwordChange} required />
                         <h3>Confirm Password</h3>
-                        <input className={styles.InputBox}type="password" onChange={this.passwordConfirmChange} />
+                        <input className={styles.InputBox} type="password" onChange={this.passwordConfirmChange} required />
                         {loading ? <p className={styles.Loading}><CircularProgress size={45} /></p> : 
                         <Button type="submit" variant="contained" fullWidth={true} color="primary">
                             Log In

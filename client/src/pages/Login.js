@@ -30,6 +30,7 @@ class Login extends Component {
         const { username, password, rememberMe } = this.state;
 
         if (!username || !password) {
+            this.setState({ loading: false });
             setNotification('Invalid username or password.');
         }
         else {
@@ -85,9 +86,9 @@ class Login extends Component {
                     {notification && <Paper className={nightmode ? styles.NotificationDark : styles.Notification}><span>Error: </span>{notification}</Paper>}
                     <form onSubmit={this.login} >
                         <h3>Username</h3>
-                        <input className={styles.InputBox} type="text" onChange={this.usernameChange} />
+                        <input className={styles.InputBox} type="text" onChange={this.usernameChange} required />
                         <h3>Password</h3>
-                        <input className={styles.InputBox} type="password" onChange={this.passwordChange} />
+                        <input className={styles.InputBox} type="password" onChange={this.passwordChange} required />
                         <span>
                             <Checkbox
                                 className={styles.RememberMe}
