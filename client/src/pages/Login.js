@@ -96,9 +96,9 @@ class Login extends Component {
                                 onChange={this.rememberMeChange}
                                 value="rememberMe"
                             />
-                            Remember me for 1 day
+                            Remember me
                         </span>
-                        {loading ? <p className={styles.Loading}><CircularProgress size={45} /></p> : 
+                        {loading ? <div className={styles.Loading}><CircularProgress size={45} /></div> : 
                         <Button type="submit" variant="contained" fullWidth={true} color="primary">
                             Log In
                         </Button>}

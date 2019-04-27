@@ -19,7 +19,7 @@ app.use(session({
     saveUninitialized: false,
     unset: 'destroy',
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24 // 1 day
+        maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
     }
 }));
 

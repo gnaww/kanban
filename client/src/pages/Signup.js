@@ -100,7 +100,7 @@ class SignUp extends Component {
                         <input className={styles.InputBox} type="password" onChange={this.passwordChange} required />
                         <h3>Confirm Password</h3>
                         <input className={styles.InputBox} type="password" onChange={this.passwordConfirmChange} required />
-                        {loading ? <p className={styles.Loading}><CircularProgress size={45} /></p> : 
+                        {loading ? <div className={styles.Loading}><CircularProgress size={45} /></div> : 
                         <Button type="submit" variant="contained" fullWidth={true} color="primary">
                             Log In
                         </Button>}

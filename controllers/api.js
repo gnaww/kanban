@@ -1,6 +1,5 @@
 const login = (usersCollection, bcrypt) => async (req, res) => {
     const { username, password, rememberMe } = req.body;
-    console.log(rememberMe)
     if (!username || !password) {
         console.log('empty username/password during login');
         return res.status(400).json('Invalid login credentials. Try again.');
@@ -22,13 +21,11 @@ const login = (usersCollection, bcrypt) => async (req, res) => {
 
                     // match === true if hash matches
                     if (match) {
-                        if (rememberMe) {
-                            req.session.rememberMe = true;
-                        }
-                        else {
-                            req.session.rememberMe = false;
-                        }
+                        req.session.rememberMe = rememberMe;
                         req.session.user = user[0].username;
+                        if (!rememberMe) {
+                            req.session.cookie.expires = false;
+                        }
                         return res.status(200).json('Successfully logged in!');
                     } else {
                         return res.status(200).json('Incorrect username or password.');
@@ -98,11 +95,11 @@ const logout = (req, res) => {
 };
 
 const isLoggedIn = (req, res) => {
-    console.log(req.session);
-    if (req.session.rememberMe && req.session.user) {
+    if (req.session.rememberMe === false && req.session.user) {
+        req.session.cookie.expires = false;
         res.status(200).json(req.session.user);
     }
-    else if (req.session.user) {
+    else if (req.session.rememberMe && req.session.user) {
         res.status(200).json(req.session.user);
     }
     else {
