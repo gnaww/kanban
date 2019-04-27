@@ -9,3 +9,33 @@
     margin: 15px;
     flex: 1;
 }
+
+.Container button, .ContainerDark button {
+    background-color: #00695f;
+}
+
+.Container button:hover, .ContainerDark button:hover {
+    background-color: #33ab9f;
+}
+
+.WrapperDark {
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #424242;
+    color: white;
+}
+
+/*
+color scheme:
+TEAL
+#00695f
+#009688
+#33ab9f
+
+BLUE
+#1c54b2
+#2979ff
+#5393ff
+*/

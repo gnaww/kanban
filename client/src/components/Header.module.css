@@ -5,6 +5,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 15px;
+    background-color: #009688;
     /* box-shadow: 0px 0px 9px 3px rgba(41,41,41,.25); */
     box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
                 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
@@ -21,11 +22,53 @@
     color: black;
 }
 
+.Logout {
+    background-color: #00695f !important;
+    margin: 0 10px !important;
+}
+
+.Logout:hover {
+    background-color: #33ab9f !important;
+}
+
 .Logo {
     height: 50px;
 }
 
 .LogoText {
-    font-size: 50px;
+    font-size: 40px;
     margin-left: 10px;
+    color: white;
+}
+
+.Status {
+    display: flex;
+    align-items: center;
+}
+
+.Icon {
+    color: white;
+}
+
+.Sync {
+    margin: 0 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .Header {
+        line-height: 20px;
+    }
+
+    .LogoText {
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .Logo {
+        display: none;
+    }
+    
+    .Logout {
+        margin: 0 !important;
+    }
 }

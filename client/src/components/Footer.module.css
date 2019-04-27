@@ -8,14 +8,38 @@
     text-align: center;
 }
 
-.Credits span {
+.Credits span, .CreditsDark span {
     color: #e25555;
+}
+
+.Credits a {
+    font-weight: bold;
+    color: black;
 }
 
 .Credits a:visited {
     color: black;
 }
 
-.Credits p {
+.Credits p, .CreditsDark p {
     margin: 0;
+}
+
+.CreditsDark {
+    display: flex;
+    flex-direction: column;
+    background-color: #303030;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.CreditsDark a {
+    font-weight: bold;
+    color: white;
+}
+
+.CreditsDark a:visited {
+    color: white;
 }

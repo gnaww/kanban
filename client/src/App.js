@@ -15,11 +15,13 @@ class App extends Component {
         this.state = {
             notification: '',
             auth: false,
-            user: ''
+            user: '',
+            nightmode: false
         };
 
         this.setNotification = this.setNotification.bind(this);
         this.authenticate = this.authenticate.bind(this);
+        this.toggleNightMode = this.toggleNightMode.bind(this);
     }
 
     setNotification = notification => {
@@ -36,30 +38,47 @@ class App extends Component {
             .catch(err => this.setNotification('Something went wrong.'));
     }
 
+    toggleNightMode = () => {
+        this.setState({ nightmode: !this.state.nightmode })
+    }
+    
     componentDidMount = () => {
         this.authenticate();
     }
 
     render() {
+        const pageProps = {
+            setNotification: this.setNotification,
+            notification: this.state.notification,
+            authenticate: this.authenticate
+        };
+
+        const headerProps = {
+            auth: this.state.auth,
+            setNotification: this.setNotification,
+            nightmode: this.state.nightmode,
+            toggleNightMode: this.toggleNightMode
+        }
+        
         return (
             <Router>
-                <div className={styles.Wrapper}>
-                    <Header auth={this.state.auth} setNotification={this.setNotification} />
+                <div className={this.state.nightmode ? styles.WrapperDark : styles.Wrapper}>
+                    <Header {...headerProps} />
                     <div className={styles.Container}>
                         <Switch>
                             <Route path="/" exact render={() => {
-                                return this.state.auth ? <Home setNotification={this.setNotification} notification={this.state.notification} authenticate={this.authenticate} user={this.state.user} /> : <Redirect to="/login" />
+                                return this.state.auth ? <Home {...pageProps} user={this.state.user} /> : <Redirect to="/login" />
                             }} />
                             <Route path="/login" render={() => {
-                                return this.state.auth ? <Redirect to="/" /> : <Login setNotification={this.setNotification} notification={this.state.notification} authenticate={this.authenticate} />
+                                return this.state.auth ? <Redirect to="/" /> : <Login {...pageProps} />
                             }} />
                             <Route path="/signup" render={() => {
-                                return this.state.auth ? <Redirect to="/" /> : <SignUp setNotification={this.setNotification} notification={this.state.notification} authenticate={this.authenticate} />
+                                return this.state.auth ? <Redirect to="/" /> : <SignUp {...pageProps} />
                             }} />
                             <Route component={BadPage} />
                         </Switch>
                     </div>
-                    <Footer />
+                    <Footer nightmode={this.state.nightmode} />
                 </div>
             </Router>
         );

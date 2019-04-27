@@ -5,16 +5,15 @@ import IconButton from '@material-ui/core/IconButton';
 import Brightness5 from '@material-ui/icons/Brightness5';
 import Brightness3 from '@material-ui/icons/Brightness3';
 import CloudDoneOutlined from '@material-ui/icons/CloudDoneOutlined';
-import Sync from '@material-ui/icons/Sync';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import SyncProblem from '@material-ui/icons/SyncProblem';
 import logo from '../logo.png';
 import styles from './Header.module.css';
 
 const Header = props => {
-    const { auth } = props;
+    const { auth, nightmode, toggleNightMode, setNotification } = props;
 
     const logout = async (_) => {
-        const { setNotification } = props;
         const response = await fetch('/api/logout');
         const responseText = await response.json();
 
@@ -24,7 +23,7 @@ const Header = props => {
         else {
             setNotification(responseText);
         }
-    }
+    };
 
     return (
         <header className={styles.Header}>
@@ -33,21 +32,17 @@ const Header = props => {
                 <span className={styles.LogoText}>Kanban Lite</span>
             </Link>
             
-            {/* {auth && <Button type="submit" variant="contained" color="primary" onClick={logout}>
-                Log Out
-            </Button>} */}
-            <IconButton>
-                <Brightness3 />
-            </IconButton>
-            <IconButton>
-                <Brightness5 />
-            </IconButton>
-            <CloudDoneOutlined />
-            <Sync />
-            <SyncProblem />
-            <Button type="submit" variant="contained" color="primary" onClick={logout}>
-                Log Out
-            </Button>
+            <div className={styles.Status}>
+                <CloudDoneOutlined className={`${styles.Icon} ${styles.Sync}`} />
+                <CircularProgress className={`${styles.Icon} ${styles.Sync}`} color="inherit" size={24} thickness={4} />
+                <SyncProblem className={`${styles.Icon} ${styles.Sync}`} />
+                <IconButton onClick={toggleNightMode}>
+                    {nightmode ? <Brightness5 className={styles.Icon} /> : <Brightness3 className={styles.Icon} />}
+                </IconButton>
+                {auth && <Button className={styles.Logout} type="submit" variant="contained" color="primary" onClick={logout}>
+                    Log Out
+                </Button>}
+            </div>
         </header>
     );
 }

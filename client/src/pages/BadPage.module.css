@@ -1,0 +1,14 @@
+.BadPage {
+    font-size: 30px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+;}
+
+.BadPage a {
+    color: #2979ff;
+}
+
+.BadPage a:visited {
+    color: #2979ff;
+}

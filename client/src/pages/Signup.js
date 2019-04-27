@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import styles from './Login.module.css';
 
 class SignUp extends Component {
@@ -9,7 +11,8 @@ class SignUp extends Component {
         this.state = {
             username: '',
             password: '',
-            passwordConfirm: ''
+            passwordConfirm: '',
+            loading: false
         };
 
         this.signUp = this.signUp.bind(this);
@@ -22,29 +25,31 @@ class SignUp extends Component {
         const { setNotification } = this.props;
         event.preventDefault();
 
-        setNotification('');
+        this.setState({ loading: true });
         let { username, password, passwordConfirm } = this.state;
         username = username.trim();
         let valid = true;
         
         if (!username) {
             valid = false;
+            this.setState({ loading: false });
             setNotification('Invalid username.');
         }
         else if (!password || !passwordConfirm || password !== passwordConfirm) {
             valid = false;
+            this.setState({ loading: false });
             setNotification('Must enter a password and the passwords must match.');
         }
         
         if (valid) {
             try {
-                setNotification('Loading...');
                 const response = await fetch('/api/signup', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, password })
                 });
                 const responseText = await response.json();
+                this.setState({ loading: false });
                 if (responseText === 'Successfully signed up!') {
                     this.props.history.push("/");
                 }
@@ -54,6 +59,7 @@ class SignUp extends Component {
             }
             catch(err) {
                 console.log(err);
+                this.setState({ loading: false });
                 setNotification('An error occurred, please try again.');
             }
         }
@@ -80,23 +86,27 @@ class SignUp extends Component {
 
     render() {
         const { notification } = this.props;
+        const { loading } = this.state;
 
         return (
-            <div>
-                <h1>SIGNUP</h1>
-                { notification && <p>{notification}</p> }
-                <form onSubmit={this.signUp}>
-                    <h3>Username</h3>
-                    <input className={styles.InputBox} type="text" onChange={this.usernameChange} />
-                    <h3>Password</h3>
-                    <input className={styles.InputBox}type="password" onChange={this.passwordChange} />
-                    <h3>Confirm Password</h3>
-                    <input className={styles.InputBox}type="password" onChange={this.passwordConfirmChange} />
-                    <Button type="submit" variant="contained" fullWidth="true" color="primary">
-                        Sign Up
-                    </Button>
-                </form>
-                <p>or <Link to="/login">Login</Link></p>
+            <div className={styles.UserForm}>
+                <div>
+                    <h1>Sign Up</h1>
+                    { notification && <Paper className={styles.Notification}><span>Error: </span>{notification}</Paper> }
+                    <form onSubmit={this.signUp}>
+                        <h3>Username</h3>
+                        <input className={styles.InputBox} type="text" onChange={this.usernameChange} />
+                        <h3>Password</h3>
+                        <input className={styles.InputBox}type="password" onChange={this.passwordChange} />
+                        <h3>Confirm Password</h3>
+                        <input className={styles.InputBox}type="password" onChange={this.passwordConfirmChange} />
+                        {loading ? <p className={styles.Loading}><CircularProgress size={45} /></p> : 
+                        <Button type="submit" variant="contained" fullWidth={true} color="primary">
+                            Log In
+                        </Button>}
+                    </form>
+                    <p>or <Link to="/login">Login</Link></p>
+                </div>
             </div>
         );
     }
