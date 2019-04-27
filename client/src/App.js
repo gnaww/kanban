@@ -58,7 +58,8 @@ class App extends Component {
             auth: this.state.auth,
             setNotification: this.setNotification,
             nightmode: this.state.nightmode,
-            toggleNightMode: this.toggleNightMode
+            toggleNightMode: this.toggleNightMode,
+            user: this.state.user
         }
         
         return (
@@ -67,9 +68,10 @@ class App extends Component {
                     <Header {...headerProps} />
                     <div className={styles.Container}>
                         <Switch>
-                            <Route path="/" exact render={() => {
-                                return this.state.auth ? <Home {...pageProps} user={this.state.user} /> : <Redirect to="/login" />
-                            }} />
+                            {/* <Route path="/" exact render={() => {
+                                return this.state.auth ? <Home {...pageProps} /> : <Redirect to="/login" />
+                            }} /> */}
+                            <Route path="/" exact render={() => <Home {...pageProps} />} />
                             <Route path="/login" render={() => {
                                 return this.state.auth ? <Redirect to="/" /> : <Login {...pageProps} />
                             }} />

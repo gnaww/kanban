@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import BoardList from '../components/BoardList';
 import styles from './Home.module.css';
 
@@ -41,10 +41,9 @@ class Home extends Component {
     }
 
     render() {
-        const { notification, user } = this.props;
+        const { notification } = this.props;
         return (
-            <div>
-                {user ? <h1>Welcome {user}!</h1> : <h1>Not logged in, go to <Link to="/login">Login</Link> to login</h1>}
+            <div className={styles.Home}>
                 <h1>Your Kanban Boards</h1>
                 { notification && <p>{notification}</p> }
                 <BoardList boards={this.state.boards}/>

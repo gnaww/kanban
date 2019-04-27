@@ -6,7 +6,7 @@ const Board = props => {
     const { name, items } = props;
 
     return (
-        <div>
+        <div className={styles.Board}>
             <h1>{ name }</h1>
             <div>
                 { items.map((item, idx) => <Item key={idx} id={idx} content={item} />) }

@@ -1,12 +1,13 @@
 import React from 'react';
+import Paper from '@material-ui/core/Paper';
 import styles from './Item.module.css';
 
 const Item = props => {
     const { id, content } = props;
     return (
-        <div>
+        <Paper>
             { `${id}) ${content}` }
-        </div>
+        </Paper>
     );
 }
 

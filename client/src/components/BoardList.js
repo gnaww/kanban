@@ -5,7 +5,7 @@ import Board from './Board';
 const BoardList = props => {
     const { boards } = props;
     return (
-        <div>
+        <div className={styles.BoardList}>
             { boards.map((board, idx) => <Board key={idx} id={idx} name={board.name} items={board.items} />) }
         </div>
     );

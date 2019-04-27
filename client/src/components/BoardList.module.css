@@ -1,0 +1,4 @@
+.BoardList {
+    display: flex;
+    flex-wrap: wrap;
+}
