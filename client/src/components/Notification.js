@@ -1,11 +1,10 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import Close from '@material-ui/icons/Close';
 import Paper from '@material-ui/core/Paper';
 import styles from './Notification.module.css';
 
-const Header = props => {
+const Notification = props => {
     const { notification, nightmode, setNotification } = props;
 
     const onClose = () => {
@@ -22,4 +21,4 @@ const Header = props => {
     );
 }
 
-export default withRouter(Header);
+export default Notification;
