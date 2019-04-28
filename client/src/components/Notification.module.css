@@ -14,7 +14,7 @@
 }
 
 .Notification span {
-    display: inline;
+    display: inline !important;
 }
 
 .NotificationDark {
