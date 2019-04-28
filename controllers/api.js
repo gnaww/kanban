@@ -66,6 +66,7 @@ const signup = (usersCollection, bcrypt) => async (req, res) => {
                         try {
                             await usersCollection.add({ username: username, password: hash });
                             req.session.user = username;
+                            req.session.rememberMe = true;
                             return res.status(200).json('Successfully signed up!');
                         }
                         catch (err) {
