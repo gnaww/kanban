@@ -1,0 +1,38 @@
+.Notification {
+    width: 90% !important;
+    margin: 20px auto;
+    border-left: 5px solid #FEC627;
+    padding: 10px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Notification .Error, .NotificationDark .Error {
+    font-weight: bold;
+}
+
+.Notification span {
+    display: inline;
+}
+
+.NotificationDark {
+    width: 90% !important;
+    margin: 20px auto;
+    border-left: 5px solid #FEC627;
+    padding: 10px;
+    color: black;
+    background-color: #e0e0e0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.CloseButton {
+    display: inline-block;
+    background-color: transparent !important;
+    color: #e25555 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
-import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Notification from '../components/Notification';
 import styles from './Login.module.css';
 
 class Login extends Component {
@@ -76,14 +76,14 @@ class Login extends Component {
     }
 
     render() {
-        const { notification, nightmode } = this.props;
+        const { notification, nightmode, setNotification } = this.props;
         const { loading } = this.state;
 
         return (
             <div className={styles.UserForm}>
                 <div>
                     <h1>Log In</h1>
-                    {notification && <Paper className={nightmode ? styles.NotificationDark : styles.Notification}><span>Error: </span>{notification}</Paper>}
+                    {notification && <Notification {...{ notification,nightmode, setNotification }} />}
                     <form onSubmit={this.login} >
                         <h3>Username</h3>
                         <input className={styles.InputBox} type="text" onChange={this.usernameChange} required />

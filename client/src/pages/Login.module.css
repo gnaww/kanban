@@ -69,25 +69,3 @@
 .Loading div {
     color: #00695f;
 }
-
-.Notification {
-    width: 90% !important;
-    margin: 20px auto;
-    border-left: 5px solid #FEC627;
-    padding: 15px 0 15px 10px;
-    color: black;
-}
-
-.Notification span, .NotificationDark span {
-    display: inline;
-    font-weight: bold;
-}
-
-.NotificationDark {
-    width: 90% !important;
-    margin: 20px auto;
-    border-left: 5px solid #FEC627;
-    padding: 15px 0 15px 10px;
-    color: black;
-    background-color: #e0e0e0 !important;
-}

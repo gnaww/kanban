@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Notification from '../components/Notification';
 import styles from './Login.module.css';
 
 class SignUp extends Component {
@@ -85,14 +85,14 @@ class SignUp extends Component {
     }
 
     render() {
-        const { notification, nightmode } = this.props;
+        const { notification, nightmode, setNotification } = this.props;
         const { loading } = this.state;
 
         return (
             <div className={styles.UserForm}>
                 <div>
                     <h1>Sign Up</h1>
-                    { notification && <Paper className={nightmode ? styles.NotificationDark : styles.Notification}><span>Error: </span>{notification}</Paper> }
+                    { notification && <Notification {...{ notification,nightmode, setNotification }} /> }
                     <form onSubmit={this.signUp}>
                         <h3>Username</h3>
                         <input className={styles.InputBox} type="text" onChange={this.usernameChange} required />
@@ -102,7 +102,7 @@ class SignUp extends Component {
                         <input className={styles.InputBox} type="password" onChange={this.passwordConfirmChange} required />
                         {loading ? <div className={styles.Loading}><CircularProgress size={45} /></div> : 
                         <Button type="submit" variant="contained" fullWidth={true} color="primary">
-                            Log In
+                            Sign Up
                         </Button>}
                     </form>
                     <p>or <Link to="/login">Login</Link></p>
