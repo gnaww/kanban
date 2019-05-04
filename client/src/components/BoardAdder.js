@@ -27,7 +27,7 @@ class BoardAdder extends Component {
             <div className={styles.BoardAdder}>
                 <TextField
                     label="New board name"
-                    value={this.state.newBoardname}
+                    value={this.state.newBoardName}
                     onChange={this.handleBoardNameChange}
                     margin="normal"
                 />
