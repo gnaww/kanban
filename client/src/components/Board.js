@@ -6,7 +6,7 @@ import Item from './Item';
 import ItemAdder from './ItemAdder';
 
 const Board = props => {
-    const { id, name, items, handleDeleteBoard, handleAddItem } = props;
+    const { id, name, items, handleDeleteBoard, handleAddItem, handleDeleteItem } = props;
 
     const deleteBoard = () => {
         handleDeleteBoard(id);
@@ -19,7 +19,7 @@ const Board = props => {
             </IconButton>
             <h1>{ name }</h1>
             <div>
-                { items.map((item, idx) => <Item key={idx} id={idx} content={item} />) }
+                { items.map((item, idx) => <Item key={idx} boardId={id} id={idx} content={item} handleDeleteItem={handleDeleteItem} />) }
             </div>
             <ItemAdder boardId={id} handleAddItem={handleAddItem} />
         </div>

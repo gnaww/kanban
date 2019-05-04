@@ -102,6 +102,30 @@ class Home extends Component {
         }
     }
 
+    handleDeleteItem = (boardId, itemId) => {
+        const { setNotification } = this.props;
+        setNotification('');
+
+        if (boardId >= this.state.boards.length || boardId < 0) {
+            setNotification('Tried deleting from a nonexistent board.');
+        }
+        else if (itemId >= this.state.boards[boardId].items.length || itemId < 0) {
+            setNotification('Tried deleting a nonexistent item.');
+        }
+        else {
+            const newBoards = this.state.boards.map((board, idx) => {
+                if (idx === boardId) {
+                    const newItems = board.items.filter((_, i) => i !== itemId);
+                    return { name: board.name, items: newItems };
+                }
+                else {
+                    return board;
+                }
+            });
+            this.setState({ boards: newBoards });
+        }
+    }
+
     componentDidMount = () => {
         const { setNotification, authenticate } = this.props;
         authenticate();
@@ -113,7 +137,8 @@ class Home extends Component {
         const boardFunctions = {
             handleAddBoard: this.handleAddBoard,
             handleDeleteBoard: this.handleDeleteBoard,
-            handleAddItem: this.handleAddItem
+            handleAddItem: this.handleAddItem,
+            handleDeleteItem: this.handleDeleteItem
         }
 
         return (
