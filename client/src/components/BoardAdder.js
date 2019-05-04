@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Add from '@material-ui/icons/Add';
+import AddBox from '@material-ui/icons/AddBox';
 import styles from './BoardAdder.module.css';
 
 class BoardAdder extends Component {
@@ -24,16 +24,16 @@ class BoardAdder extends Component {
     render() {
         return (
             <div className={styles.BoardAdder}>
-                <h2>Add a new board</h2>
-                <IconButton onClick={this.addBoard}>
-                    <Add />
-                </IconButton>
                 <TextField
                     label="New board name"
                     value={this.state.newBoardname}
                     onChange={this.handleBoardNameChange}
                     margin="normal"
                 />
+                <Button variant="contained" color="secondary" onClick={this.addBoard}>
+                    Add Board
+                    <AddBox />
+                </Button>
             </div>
         );
     }
