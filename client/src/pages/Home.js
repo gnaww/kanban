@@ -55,6 +55,19 @@ class Home extends Component {
         }
     }
 
+    handleDeleteBoard = idx => {
+        const { setNotification } = this.props;
+        setNotification('');
+
+        if (idx >= this.state.boards.length || idx < 0) {
+            setNotification('Tried deleting a nonexistent board.');
+        }
+        else {
+            const newBoards = this.state.boards.filter((_, i) => idx !== i);
+            this.setState({ boards: newBoards });
+        }
+    }
+
     componentDidMount = () => {
         const { setNotification, authenticate } = this.props;
         authenticate();
@@ -67,7 +80,7 @@ class Home extends Component {
             <div className={styles.Home}>
                 <h1>Your Kanban Boards</h1>
                 { notification && <Notification {...{ notification,nightmode, setNotification }} /> }
-                <BoardList boards={this.state.boards} handleAddBoard={this.handleAddBoard} />
+                <BoardList boards={this.state.boards} handleAddBoard={this.handleAddBoard} handleDeleteBoard={this.handleDeleteBoard} />
             </div>
         );
     }
