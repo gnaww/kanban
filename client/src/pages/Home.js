@@ -86,6 +86,9 @@ class Home extends Component {
         if (boardId >= this.state.boards.length || boardId < 0) {
             setNotification('Tried adding to a nonexistent board.');
         }
+        else if (!newItem) {
+            setNotification('You must add a new item with content.');
+        }
         else {
             const newBoards = this.state.boards.map((board, idx) => {
                 if (idx === boardId) {

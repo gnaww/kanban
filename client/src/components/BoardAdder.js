@@ -16,7 +16,9 @@ class BoardAdder extends Component {
         this.setState({ newBoardName: event.target.value });
     }
 
-    addBoard = () => {
+    addBoard = event => {
+        event.preventDefault();
+
         const { handleAddBoard } = this.props;
         handleAddBoard(this.state.newBoardName);
         this.setState({ newBoardName: '' });
@@ -24,18 +26,18 @@ class BoardAdder extends Component {
 
     render() {
         return (
-            <div className={styles.BoardAdder}>
+            <form className={styles.BoardAdder} onSubmit={this.addBoard}>
                 <TextField
                     label="New board name"
                     value={this.state.newBoardName}
                     onChange={this.handleBoardNameChange}
                     margin="normal"
                 />
-                <Button variant="contained" color="secondary" onClick={this.addBoard}>
+                <Button type="submit" variant="contained" color="secondary">
                     Add Board
                     <AddBox />
                 </Button>
-            </div>
+            </form>
         );
     }
 }

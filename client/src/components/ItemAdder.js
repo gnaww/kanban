@@ -17,7 +17,9 @@ class ItemAdder extends Component {
         this.setState({ newItem: event.target.value });
     }
 
-    addItem = () => {
+    addItem = event => {
+        event.preventDefault();
+
         const { boardId, handleAddItem } = this.props;
         handleAddItem(boardId, this.state.newItem);
         this.setState({ newItem: '' });
@@ -25,17 +27,19 @@ class ItemAdder extends Component {
 
     render () {
         return (
-            <Paper className={styles.ItemAdder}>
-                <TextField
-                    label="Add new item"
-                    value={this.state.newItem}
-                    onChange={this.handleItemChange}
-                    margin="normal"
-                />
-                <Button variant="contained" color="secondary" onClick={this.addItem}>
-                    <AddBox />
-                </Button>
-            </Paper>
+            <form onSubmit={this.addItem}>
+                <Paper className={styles.ItemAdder}>
+                    <TextField
+                        label="Add new item"
+                        value={this.state.newItem}
+                        onChange={this.handleItemChange}
+                        margin="normal"
+                    />
+                    <Button type="submit" variant="contained" color="secondary">
+                        <AddBox />
+                    </Button>
+                </Paper>
+            </form>
         );
     }
 }
