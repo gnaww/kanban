@@ -15,11 +15,6 @@ class Login extends Component {
             rememberMe: false,
             loading: false
         };
-
-        this.login = this.login.bind(this);
-        this.usernameChange = this.usernameChange.bind(this);
-        this.passwordChange = this.passwordChange.bind(this);
-        this.rememberMeChange = this.rememberMeChange.bind(this);
     }
 
     login = async (event) => {

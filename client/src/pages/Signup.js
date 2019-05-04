@@ -14,11 +14,6 @@ class SignUp extends Component {
             passwordConfirm: '',
             loading: false
         };
-
-        this.signUp = this.signUp.bind(this);
-        this.usernameChange = this.usernameChange.bind(this);
-        this.passwordChange = this.passwordChange.bind(this);
-        this.passwordConfirmChange = this.passwordConfirmChange.bind(this);
     }
 
     signUp = async (event) => {

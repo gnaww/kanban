@@ -18,10 +18,6 @@ class App extends Component {
             user: '',
             nightmode: false
         };
-
-        this.setNotification = this.setNotification.bind(this);
-        this.authenticate = this.authenticate.bind(this);
-        this.toggleNightMode = this.toggleNightMode.bind(this);
     }
 
     setNotification = notification => {

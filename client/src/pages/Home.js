@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import BoardList from '../components/BoardList';
+import Notification from '../components/Notification';
 import styles from './Home.module.css';
 
 class Home extends Component {
@@ -34,6 +35,26 @@ class Home extends Component {
         };
     }
 
+    handleAddBoard = boardName => {
+        const { setNotification } = this.props;
+        setNotification('');
+
+        let valid = true;
+
+        if (!boardName) {
+            valid = false;
+            setNotification('You must give the new board a name.');
+        }
+        else if (this.state.boards.some(board => board.name === boardName)) {
+            valid = false;
+            setNotification('You must give the new board a unique name.');
+        }
+
+        if (valid) {
+            this.setState({ boards: [...this.state.boards, { name: boardName, items: [] }]})
+        }
+    }
+
     componentDidMount = () => {
         const { setNotification, authenticate } = this.props;
         authenticate();
@@ -41,12 +62,12 @@ class Home extends Component {
     }
 
     render() {
-        const { notification } = this.props;
+        const { notification, nightmode, setNotification } = this.props;
         return (
             <div className={styles.Home}>
                 <h1>Your Kanban Boards</h1>
-                { notification && <p>{notification}</p> }
-                <BoardList boards={this.state.boards}/>
+                { notification && <Notification {...{ notification,nightmode, setNotification }} /> }
+                <BoardList boards={this.state.boards} handleAddBoard={this.handleAddBoard} />
             </div>
         );
     }
