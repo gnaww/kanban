@@ -19,6 +19,7 @@ class BoardAdder extends Component {
     addBoard = () => {
         const { handleAddBoard } = this.props;
         handleAddBoard(this.state.newBoardName);
+        this.setState({ newBoardName: '' });
     }
 
     render() {

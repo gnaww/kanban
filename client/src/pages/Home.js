@@ -31,8 +31,19 @@ class Home extends Component {
                         "completed 3"
                     ]
                 }
-            ]
+            ],
+            loading: true,
+            syncing: false
         };
+    }
+
+    sync = () => {
+        // called whenever this.state.boards changes somehow
+        // call backend api to update users boards in db
+        // while awaiting backend api response display syncing animated icon
+        // if call responds with success message, display sync done icon
+        // if call reponds with error message, display sync error icon and show a notification that says Error: There was a problem with syncing your kanban boards to the cloud. (link)Retry
+        // retry calls this function again to try syncing again
     }
 
     handleAddBoard = boardName => {
@@ -68,6 +79,26 @@ class Home extends Component {
         }
     }
 
+    handleAddItem = (boardId, newItem) => {
+        const { setNotification } = this.props;
+        setNotification('');
+
+        if (boardId >= this.state.boards.length || boardId < 0) {
+            setNotification('Tried adding to a nonexistent board.');
+        }
+        else {
+            const newBoards = this.state.boards.map((board, idx) => {
+                if (idx === boardId) {
+                    return { name: board.name, items: [...board.items, newItem] };
+                }
+                else {
+                    return board;
+                }
+            });
+            this.setState({ boards: newBoards });
+        }
+    }
+
     componentDidMount = () => {
         const { setNotification, authenticate } = this.props;
         authenticate();
@@ -76,11 +107,17 @@ class Home extends Component {
 
     render() {
         const { notification, nightmode, setNotification } = this.props;
+        const boardFunctions = {
+            handleAddBoard: this.handleAddBoard,
+            handleDeleteBoard: this.handleDeleteBoard,
+            handleAddItem: this.handleAddItem
+        }
+
         return (
             <div className={styles.Home}>
                 <h1>Your Kanban Boards</h1>
                 { notification && <Notification {...{ notification,nightmode, setNotification }} /> }
-                <BoardList boards={this.state.boards} handleAddBoard={this.handleAddBoard} handleDeleteBoard={this.handleDeleteBoard} />
+                <BoardList boards={this.state.boards} {...boardFunctions} />
             </div>
         );
     }

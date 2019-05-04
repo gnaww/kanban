@@ -3,9 +3,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Delete from '@material-ui/icons/Delete';
 import styles from './Board.module.css';
 import Item from './Item';
+import ItemAdder from './ItemAdder';
 
 const Board = props => {
-    const { id, name, items, handleDeleteBoard } = props;
+    const { id, name, items, handleDeleteBoard, handleAddItem } = props;
 
     const deleteBoard = () => {
         handleDeleteBoard(id);
@@ -20,6 +21,7 @@ const Board = props => {
             <div>
                 { items.map((item, idx) => <Item key={idx} id={idx} content={item} />) }
             </div>
+            <ItemAdder boardId={id} handleAddItem={handleAddItem} />
         </div>
     );
 }
