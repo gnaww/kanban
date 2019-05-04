@@ -10,6 +10,7 @@ const Item = props => {
     const deleteItem = () => {
         handleDeleteItem(boardId, id);
     }
+    
     return (
         <Paper className={styles.Item}>
             <IconButton onClick={deleteItem}>
