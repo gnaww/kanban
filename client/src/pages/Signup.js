@@ -90,11 +90,11 @@ class SignUp extends Component {
                     { notification && <Notification {...{ notification,nightmode, setNotification }} /> }
                     <form onSubmit={this.signUp}>
                         <h3>Username</h3>
-                        <input className={styles.InputBox} type="text" onChange={this.usernameChange} required />
+                        <input className={styles.InputBox} type="text" onChange={this.usernameChange} value={this.state.username} required />
                         <h3>Password</h3>
-                        <input className={styles.InputBox} type="password" onChange={this.passwordChange} required />
+                        <input className={styles.InputBox} type="password" onChange={this.passwordChange} value={this.state.password} required />
                         <h3>Confirm Password</h3>
-                        <input className={styles.InputBox} type="password" onChange={this.passwordConfirmChange} required />
+                        <input className={styles.InputBox} type="password" onChange={this.passwordConfirmChange} value={this.state.passwordConfirm} required />
                         {loading ? <div className={styles.Loading}><CircularProgress size={45} /></div> : 
                         <Button type="submit" variant="contained" fullWidth={true} color="primary">
                             Sign Up
