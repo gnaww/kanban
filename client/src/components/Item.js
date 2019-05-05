@@ -9,7 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import styles from './Item.module.css';
 
 const Item = props => {
-    const { boardId, id, content, itemsLength, boardsLength, handleDeleteItem, handleReorderItem } = props;
+    const { boardId, id, content, itemsLength, boardsLength, handleDeleteItem, handleReorderItem, handleMoveItem } = props;
 
     const deleteItem = () => {
         handleDeleteItem(boardId, id);
@@ -21,6 +21,14 @@ const Item = props => {
 
     const moveItemDown = () => {
         handleReorderItem('down', boardId, id);
+    }
+
+    const moveItemLeft = () => {
+        handleMoveItem('left', boardId, id);
+    }
+
+    const moveItemRight = () => {
+        handleMoveItem('right', boardId, id);
     }
 
     return (
@@ -35,10 +43,10 @@ const Item = props => {
             <IconButton disabled={id === itemsLength - 1} onClick={moveItemDown}>
                 <KeyboardArrowDown fontSize="small" />
             </IconButton>
-            <IconButton disabled={boardId === 0} onClick={deleteItem}>
+            <IconButton disabled={boardId === 0} onClick={moveItemLeft}>
                 <KeyboardArrowLeft fontSize="small" />
             </IconButton>
-            <IconButton disabled={boardId === boardsLength - 1} onClick={deleteItem}>
+            <IconButton disabled={boardId === boardsLength - 1} onClick={moveItemRight}>
                 <KeyboardArrowRight fontSize="small" />
             </IconButton>
         </Paper>
