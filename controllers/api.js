@@ -40,7 +40,7 @@ const login = (usersCollection, bcrypt) => async (req, res) => {
     }
 };
 
-const signup = (usersCollection, bcrypt) => async (req, res) => {
+const signup = (usersCollection, boardsCollection, bcrypt) => async (req, res) => {
     let { username, password } = req.body;
 
     if (!username || !password) {
@@ -67,6 +67,8 @@ const signup = (usersCollection, bcrypt) => async (req, res) => {
                             await usersCollection.add({ username: username, password: hash });
                             req.session.user = username;
                             req.session.rememberMe = true;
+
+                            await boardsCollection.add({ user: username, boards: [] });
                             return res.status(200).json('Successfully signed up!');
                         }
                         catch (err) {
@@ -108,4 +110,15 @@ const isLoggedIn = (req, res) => {
     }
 };
 
-module.exports = { login, signup, logout, isLoggedIn }
+const boards = boardsCollection => async (req, res) => {
+    if (req.session.user) {
+        const userBoards = await boardsCollection.where('user', '==', req.session.user).get();
+        const boards = userBoards.docs.map(doc => doc.data())[0].boards;
+        res.status(200).json(boards);
+    }
+    else {
+        res.status(200).json('not logged in');
+    }
+};
+
+module.exports = { login, signup, logout, isLoggedIn, boards }

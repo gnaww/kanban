@@ -31,18 +31,22 @@ admin.initializeApp({
 const db = admin.firestore();
 
 const usersCollection = db.collection('users');
+const boardsCollection = db.collection('boards');
 
 // logs in user
 app.post('/api/login', api.login(usersCollection, bcrypt));
 
 // registers a new user
-app.post('/api/signup', api.signup(usersCollection, bcrypt));
+app.post('/api/signup', api.signup(usersCollection, boardsCollection, bcrypt));
 
 // logs out user
 app.get('/api/logout', api.logout);
 
 // checks if user is logged in and returns username
 app.get('/api/isloggedin', api.isLoggedIn);
+
+// gets all kanban boards for logged in user
+app.get('/api/boards', api.boards(boardsCollection));
 
 // 404, no matching route found
 app.use((_, res) => {
