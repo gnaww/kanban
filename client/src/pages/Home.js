@@ -82,7 +82,6 @@ class Home extends Component {
     handleAddItem = (boardId, newItem) => {
         const { setNotification } = this.props;
         setNotification('');
-        console.log(boardId, newItem);
 
         if (boardId >= this.state.boards.length || boardId < 0) {
             setNotification('Tried adding to a nonexistent board.');
@@ -91,7 +90,6 @@ class Home extends Component {
             setNotification('You must add a new item with content.');
         }
         else {
-            console.log(this.state.boards);
             const newBoards = this.state.boards.map((board, idx) => {
                 if (idx === boardId) {
                     return { name: board.name, items: [...board.items, newItem] };
@@ -100,13 +98,11 @@ class Home extends Component {
                     return board;
                 }
             });
-            console.log(newBoards);
             this.setState({ boards: newBoards });
         }
     }
 
     handleDeleteItem = (boardId, itemId) => {
-        console.log(boardId, itemId);
         const { setNotification } = this.props;
         setNotification('');
 
@@ -117,7 +113,6 @@ class Home extends Component {
             setNotification('Tried deleting a nonexistent item.');
         }
         else {
-            console.log('hi')
             const newBoards = this.state.boards.map((board, idx) => {
                 if (idx === boardId) {
                     const newItems = board.items.filter((_, i) => i !== itemId);
@@ -127,9 +122,7 @@ class Home extends Component {
                     return board;
                 }
             });
-            console.log(newBoards);
             this.setState({ boards: newBoards });
-            console.log('yu')
         }
     }
 
