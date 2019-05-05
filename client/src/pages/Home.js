@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import BoardList from '../components/BoardList';
 import Notification from '../components/Notification';
+import BoardAdder from '../components/BoardAdder';
 import styles from './Home.module.css';
 
 class Home extends Component {
@@ -207,7 +208,6 @@ class Home extends Component {
     render() {
         const { notification, nightmode, setNotification } = this.props;
         const boardFunctions = {
-            handleAddBoard: this.handleAddBoard,
             handleDeleteBoard: this.handleDeleteBoard,
             handleAddItem: this.handleAddItem,
             handleDeleteItem: this.handleDeleteItem,
@@ -219,7 +219,10 @@ class Home extends Component {
             <div className={styles.Home}>
                 <h1>Your Kanban Boards</h1>
                 { notification && <Notification {...{ notification,nightmode, setNotification }} /> }
-                <BoardList boards={this.state.boards} {...boardFunctions} />
+                <div className={styles.Boards}>
+                    <BoardAdder handleAddBoard={this.handleAddBoard} />
+                    <BoardList boards={this.state.boards} {...boardFunctions} />
+                </div>
             </div>
         );
     }

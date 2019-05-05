@@ -1,3 +1,7 @@
 .Home h1 {
     text-align: center;
 }
+
+.Boards {
+    display: flex;
+}
