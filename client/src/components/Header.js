@@ -12,7 +12,7 @@ import logo from '../logo.png';
 import styles from './Header.module.css';
 
 const Header = props => {
-    const { auth, nightmode, toggleNightMode, setNotification, user } = props;
+    const { auth, nightmode, toggleNightMode, setNotification, user, syncing, errorSyncing } = props;
 
     const logout = async (_) => {
         const response = await fetch('/api/logout');
@@ -26,6 +26,18 @@ const Header = props => {
         }
     };
 
+    let statusIcon = null;
+
+    if (!syncing && !errorSyncing) {
+        statusIcon = <CloudDoneOutlined className={`${styles.Icon} ${styles.Sync}`} />;
+    }
+    else if (syncing && !errorSyncing) {
+        statusIcon = <CircularProgress className={`${styles.Icon} ${styles.Sync}`} color="inherit" size={24} thickness={4} />;
+    }
+    else {
+        statusIcon = <SyncProblem className={`${styles.Icon} ${styles.Sync}`} />;
+    }
+
     return (
         <header className={styles.Header}>
             <Link to="/">
@@ -34,9 +46,7 @@ const Header = props => {
             </Link>
             
             <div className={styles.Status}>
-                {/* <CloudDoneOutlined className={`${styles.Icon} ${styles.Sync}`} /> */}
-                <CircularProgress className={`${styles.Icon} ${styles.Sync}`} color="inherit" size={24} thickness={4} />
-                {/* <SyncProblem className={`${styles.Icon} ${styles.Sync}`} /> */}
+                {statusIcon}
                 <IconButton onClick={toggleNightMode}>
                     {nightmode ? <Brightness5 className={styles.Icon} /> : <Brightness3 className={styles.Icon} />}
                 </IconButton>

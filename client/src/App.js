@@ -16,7 +16,9 @@ class App extends Component {
             notification: '',
             auth: false,
             user: '',
-            nightmode: false
+            nightmode: false,
+            syncing: false,
+            errorSyncing: false
         };
     }
 
@@ -24,12 +26,23 @@ class App extends Component {
         this.setState({ notification });
     }
 
+    startSyncing = () => {
+        this.setState({ syncing: true, errorSyncing: false });
+    }
+
+    errorSyncing = () => {
+        this.setState({ syncing: false, errorSyncing: true });
+    }
+
+    doneSyncing = () => {
+        this.setState({ syncing: false, errorSyncing: false });
+    }
+
     authenticate = () => {
         fetch('/api/isloggedin')
             .then(res => res.json())
             .then(resJSON => {
-                this.setState({ auth: resJSON !== 'not logged in' })
-                this.setState({ user: resJSON !== 'not logged in' ? resJSON : '' })
+                this.setState({ auth: resJSON !== 'not logged in', user: resJSON !== 'not logged in' ? resJSON : '' });
             })
             .catch(err => this.setNotification('Something went wrong.'));
     }
@@ -55,7 +68,9 @@ class App extends Component {
             setNotification: this.setNotification,
             nightmode: this.state.nightmode,
             toggleNightMode: this.toggleNightMode,
-            user: this.state.user
+            user: this.state.user,
+            syncing: this.state.syncing,
+            errorSyncing: this.state.errorSyncing
         }
         
         return (
@@ -65,9 +80,8 @@ class App extends Component {
                     <div className={styles.Container}>
                         <Switch>
                             <Route path="/" exact render={() => {
-                                return this.state.auth ? <Home {...pageProps} /> : <Redirect to="/login" />
+                                return this.state.auth ? <Home {...pageProps} startSyncing={this.startSyncing} errorSyncing={this.errorSyncing} doneSyncing={this.doneSyncing} /> : <Redirect to="/login" />
                             }} />
-                            {/* <Route path="/" exact render={() => <Home {...pageProps} />} /> */}
                             <Route path="/login" render={() => {
                                 return this.state.auth ? <Redirect to="/" /> : <Login {...pageProps} />
                             }} />

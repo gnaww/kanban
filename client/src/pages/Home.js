@@ -9,44 +9,39 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            boards: [
-                // {
-                //     name: "Todo",
-                //     items: [
-                //         "lorem ipsum",
-                //         "foo bar"
-                //     ]
-                // },
-                // {
-                //     name: "In Progress",
-                //     items: [
-                //         "in progress 1",
-                //         "in progress 2"
-                //     ]
-                // },
-                // {
-                //     name: "Completed",
-                //     items: [
-                //         "completed 1",
-                //         "completed 2",
-                //         "completed 3"
-                //     ]
-                // }
-            ],
+            boards: [],
             loading: true,
-            syncing: false
         };
     }
 
-    sync = () => {
-        // called whenever this.state.boards changes somehow
-        // call backend api to update users boards in db
-        // while awaiting backend api response display syncing animated icon
-        // if call responds with success message, display sync done icon
-        // if call reponds with error message, display sync error icon and show a notification that says Error: There was a problem with syncing your kanban boards to the cloud. (link)Retry
-        // retry calls this function again to try syncing again
-    }
+    sync = async () => {
+        const { boards } = this.state;
+        const { setNotification, startSyncing, errorSyncing, doneSyncing } = this.props;
+        setNotification('');
 
+        try {
+            startSyncing();
+            const response = await fetch('/api/boards', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ boards })
+            });
+            const responseText = await response.json();
+            if (responseText === 'successfully updated boards') {
+                doneSyncing();
+            }
+            else {
+                errorSyncing();
+                setNotification(responseText);
+            }
+        }
+        catch (err) {
+            console.log(err);
+            errorSyncing();
+            setNotification('There was a problem with syncing your boards to the cloud, please try again.');
+        }
+    }
+    
     handleAddBoard = boardName => {
         const { setNotification } = this.props;
         setNotification('');
@@ -144,7 +139,7 @@ class Home extends Component {
                 newItems[itemId] = newItems[newItemIdx];
                 newItems[newItemIdx] = temp;
                 newBoards[boardId].items = newItems;
-                this.setState({ boards: newBoards })
+                this.setState({ boards: newBoards });
             }
         }
         else if (direction === 'up') {
@@ -157,7 +152,7 @@ class Home extends Component {
                 newItems[itemId] = newItems[newItemIdx];
                 newItems[newItemIdx] = temp;
                 newBoards[boardId].items = newItems;
-                this.setState({ boards: newBoards })
+                this.setState({ boards: newBoards });
             }
         }
         else {
@@ -207,10 +202,22 @@ class Home extends Component {
         fetch('/api/boards')
             .then(res => res.json())
             .then(resJSON => {
-                console.log(resJSON);
-                this.setState({ boards: resJSON, loading: false });
+                if (typeof resJSON === "object") {
+                    this.setState({ boards: resJSON, loading: false });
+                }
+                else {
+                    setNotification(resJSON);
+                }
             })
             .catch(err => setNotification('Something went wrong while fetching your boards. Please refresh the page.'));
+    }
+
+    componentDidUpdate = (_, prevState) => {
+        // TODO: fix boards not syncing when items are moved around
+        // likely need to use a array.reduce() to identify when state has changed
+        if (this.state.boards !== prevState.boards) {
+            this.sync();
+        }
     }
 
     render() {
