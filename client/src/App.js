@@ -24,7 +24,7 @@ class App extends Component {
         this.setState({ notification });
     }
 
-    authenticate = async () => {
+    authenticate = () => {
         fetch('/api/isloggedin')
             .then(res => res.json())
             .then(resJSON => {
@@ -64,10 +64,10 @@ class App extends Component {
                     <Header {...headerProps} />
                     <div className={styles.Container}>
                         <Switch>
-                            {/* <Route path="/" exact render={() => {
+                            <Route path="/" exact render={() => {
                                 return this.state.auth ? <Home {...pageProps} /> : <Redirect to="/login" />
-                            }} /> */}
-                            <Route path="/" exact render={() => <Home {...pageProps} />} />
+                            }} />
+                            {/* <Route path="/" exact render={() => <Home {...pageProps} />} /> */}
                             <Route path="/login" render={() => {
                                 return this.state.auth ? <Redirect to="/" /> : <Login {...pageProps} />
                             }} />

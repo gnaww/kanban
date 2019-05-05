@@ -10,28 +10,28 @@ class Home extends Component {
         super(props);
         this.state = {
             boards: [
-                {
-                    name: "Todo",
-                    items: [
-                        "lorem ipsum",
-                        "foo bar"
-                    ]
-                },
-                {
-                    name: "In Progress",
-                    items: [
-                        "in progress 1",
-                        "in progress 2"
-                    ]
-                },
-                {
-                    name: "Completed",
-                    items: [
-                        "completed 1",
-                        "completed 2",
-                        "completed 3"
-                    ]
-                }
+                // {
+                //     name: "Todo",
+                //     items: [
+                //         "lorem ipsum",
+                //         "foo bar"
+                //     ]
+                // },
+                // {
+                //     name: "In Progress",
+                //     items: [
+                //         "in progress 1",
+                //         "in progress 2"
+                //     ]
+                // },
+                // {
+                //     name: "Completed",
+                //     items: [
+                //         "completed 1",
+                //         "completed 2",
+                //         "completed 3"
+                //     ]
+                // }
             ],
             loading: true,
             syncing: false
@@ -203,6 +203,14 @@ class Home extends Component {
         const { setNotification, authenticate } = this.props;
         authenticate();
         setNotification('');
+
+        fetch('/api/boards')
+            .then(res => res.json())
+            .then(resJSON => {
+                console.log(resJSON);
+                this.setState({ boards: resJSON, loading: false });
+            })
+            .catch(err => setNotification('Something went wrong while fetching your boards. Please refresh the page.'));
     }
 
     render() {
@@ -221,7 +229,7 @@ class Home extends Component {
                 { notification && <Notification {...{ notification,nightmode, setNotification }} /> }
                 <div className={styles.Boards}>
                     <BoardAdder handleAddBoard={this.handleAddBoard} />
-                    <BoardList boards={this.state.boards} {...boardFunctions} />
+                    <BoardList boards={this.state.boards} {...boardFunctions} loading={this.state.loading} />
                 </div>
             </div>
         );
