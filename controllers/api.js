@@ -68,7 +68,7 @@ const signup = (usersCollection, boardsCollection, bcrypt) => async (req, res) =
                             req.session.user = username;
                             req.session.rememberMe = true;
 
-                            await boardsCollection.add({ user: username, boards: [] });
+                            await boardsCollection.doc(username).set({ user: username, boards: [] });
                             return res.status(200).json('Successfully signed up!');
                         }
                         catch (err) {
@@ -112,13 +112,35 @@ const isLoggedIn = (req, res) => {
 
 const boards = boardsCollection => async (req, res) => {
     if (req.session.user) {
-        const userBoards = await boardsCollection.where('user', '==', req.session.user).get();
-        const boards = userBoards.docs.map(doc => doc.data())[0].boards;
-        res.status(200).json(boards);
+        try {
+            const userBoards = await boardsCollection.where('user', '==', req.session.user).get();
+            const boards = userBoards.docs.map(doc => doc.data())[0].boards;
+            return res.status(200).json(boards);
+        }
+        catch (err) {
+            console.log(`Error querying user boards: ${err}`);
+            return res.json('Something went wrong while fetching your boards. Please refresh the page.');
+        }
     }
     else {
-        res.status(200).json('not logged in');
+        return res.status(200).json('Login session has expired, please log in again.');
     }
 };
 
-module.exports = { login, signup, logout, isLoggedIn, boards }
+const updateBoards = boardsCollection => async (req, res) => {
+    if (req.session.user) {
+        try {
+            await boardsCollection.doc(req.session.user).update({ boards: req.body.boards }); 
+            return res.status(200).json('successfully updated boards');
+        }
+        catch (err) {
+            console.log(`Error updating user boards: ${err}`);
+            return res.json('There was a problem with syncing your boards to the cloud, please try again.');
+        }
+    }
+    else {
+        return res.status(200).json('Login session has expired, please log in again.');
+    }
+};
+
+module.exports = { login, signup, logout, isLoggedIn, boards, updateBoards }

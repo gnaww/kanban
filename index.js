@@ -48,6 +48,9 @@ app.get('/api/isloggedin', api.isLoggedIn);
 // gets all kanban boards for logged in user
 app.get('/api/boards', api.boards(boardsCollection));
 
+// updates kanban boards for logged in uesr
+app.post('/api/boards', api.updateBoards(boardsCollection));
+
 // 404, no matching route found
 app.use((_, res) => {
     res.status(404).json("Invalid API route");
