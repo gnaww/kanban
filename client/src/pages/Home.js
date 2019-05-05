@@ -126,6 +126,44 @@ class Home extends Component {
         }
     }
 
+    handleReorderItem = (direction, boardId, itemId) => {
+        const { setNotification } = this.props;
+        setNotification('');
+        
+        let newItems = this.state.boards[boardId].items;
+        let newBoards = this.state.boards;
+
+        if (direction === 'down') {
+            const newItemIdx = itemId + 1;
+            if (newItemIdx >= newItems.length) {
+                setNotification('Could not reorder item.');
+            }
+            else {
+                let temp = newItems[itemId];
+                newItems[itemId] = newItems[newItemIdx];
+                newItems[newItemIdx] = temp;
+                newBoards[boardId].items = newItems;
+                this.setState({ boards: newBoards })
+            }
+        }
+        else if (direction === 'up') {
+            const newItemIdx = itemId - 1;
+            if (newItemIdx < 0) {
+                setNotification('Could not reorder item.');
+            }
+            else {
+                let temp = newItems[itemId];
+                newItems[itemId] = newItems[newItemIdx];
+                newItems[newItemIdx] = temp;
+                newBoards[boardId].items = newItems;
+                this.setState({ boards: newBoards })
+            }
+        }
+        else {
+            setNotification('Could not reorder item.');
+        }
+    }
+    
     componentDidMount = () => {
         const { setNotification, authenticate } = this.props;
         authenticate();
@@ -138,7 +176,8 @@ class Home extends Component {
             handleAddBoard: this.handleAddBoard,
             handleDeleteBoard: this.handleDeleteBoard,
             handleAddItem: this.handleAddItem,
-            handleDeleteItem: this.handleDeleteItem
+            handleDeleteItem: this.handleDeleteItem,
+            handleReorderItem: this.handleReorderItem
         }
 
         return (
