@@ -123,7 +123,7 @@ const boards = boardsCollection => async (req, res) => {
         }
     }
     else {
-        return res.status(200).json('Login session has expired, please log in again.');
+        return res.status(200).json(new Error('Login session has expired, please log in again.'));
     }
 };
 
@@ -139,7 +139,7 @@ const updateBoards = boardsCollection => async (req, res) => {
         }
     }
     else {
-        return res.status(200).json('Login session has expired, please log in again.');
+        return res.status(200).json(new Error('Login session has expired, please log in again.'));
     }
 };
 
