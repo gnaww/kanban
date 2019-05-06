@@ -64,6 +64,12 @@ class Login extends Component {
         this.setState({ rememberMe: event.target.checked });
     }
 
+    rememberMeTextClick = () => {
+        this.setState(prevState => ({
+            rememberMe: !prevState.rememberMe
+        }));
+    }
+
     componentDidMount = () => {
         const { setNotification, authenticate } = this.props;
         authenticate();
@@ -84,7 +90,7 @@ class Login extends Component {
                         <input className={styles.InputBox} type="text" onChange={this.usernameChange} value={this.state.username} required />
                         <h3>Password</h3>
                         <input className={styles.InputBox} type="password" onChange={this.passwordChange} value={this.state.password} required />
-                        <span>
+                        <span className={styles.RememberMeLabel} onClick={this.rememberMeTextClick}>
                             <Checkbox
                                 className={styles.RememberMe}
                                 checked={this.state.rememberMe}

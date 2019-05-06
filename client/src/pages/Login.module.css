@@ -60,6 +60,10 @@
     color: #00695f !important;
 }
 
+.RememberMeLabel {
+    cursor: pointer;
+}
+
 .Loading {
     color: #00695f;
     width: 100%;
