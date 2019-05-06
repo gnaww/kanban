@@ -126,8 +126,8 @@ class Home extends Component {
         const { setNotification } = this.props;
         setNotification('');
         
-        let newItems = this.state.boards[boardId].items;
-        let newBoards = this.state.boards;
+        let newBoards = this.state.boards.map(board => ({...board}));
+        let newItems = newBoards[boardId].items;
 
         if (direction === 'down') {
             const newItemIdx = itemId + 1;
@@ -164,7 +164,7 @@ class Home extends Component {
         const { setNotification } = this.props;
         setNotification('');
         
-        let newBoards = this.state.boards;
+        let newBoards = this.state.boards.map(board => ({...board}));
         const item = newBoards[boardId].items[itemId];
 
         if (direction === 'right') {
@@ -213,8 +213,6 @@ class Home extends Component {
     }
 
     componentDidUpdate = (_, prevState) => {
-        // TODO: fix boards not syncing when items are moved around
-        // likely need to use a array.reduce() to identify when state has changed
         if (this.state.boards !== prevState.boards) {
             this.sync();
         }
