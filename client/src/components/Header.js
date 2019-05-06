@@ -28,14 +28,16 @@ const Header = props => {
 
     let statusIcon = null;
 
-    if (!syncing && !errorSyncing) {
-        statusIcon = <CloudDoneOutlined className={`${styles.Icon} ${styles.Sync}`} />;
-    }
-    else if (syncing && !errorSyncing) {
-        statusIcon = <CircularProgress className={`${styles.Icon} ${styles.Sync}`} color="inherit" size={24} thickness={4} />;
-    }
-    else {
-        statusIcon = <SyncProblem className={`${styles.Icon} ${styles.Sync}`} />;
+    if (props.location.pathname === "/") {
+        if (!syncing && !errorSyncing) {
+            statusIcon = <CloudDoneOutlined className={`${styles.Icon} ${styles.Sync}`} />;
+        }
+        else if (syncing && !errorSyncing) {
+            statusIcon = <CircularProgress className={`${styles.Icon} ${styles.Sync}`} color="inherit" size={24} thickness={4} />;
+        }
+        else {
+            statusIcon = <SyncProblem className={`${styles.Icon} ${styles.Sync}`} />;
+        }
     }
 
     return (
