@@ -12,8 +12,8 @@ const BoardList = props => {
 
     if (loading) {
         return (
-            <div className={styles.BoardList}>
-                <CircularProgress />
+            <div className={`${styles.BoardList} ${styles.Loading}`}>
+                <CircularProgress size={55} />
             </div>
         );
     }

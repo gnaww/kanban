@@ -1,3 +1,21 @@
 .ItemAdder {
-    
+    padding: 15px;
+    margin: 12px 0;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ItemAdder div {
+    margin: 0;
+}
+
+.ItemAdder button {
+    padding: 0;
+    height: 40px;
+    max-width: 30px;
 }

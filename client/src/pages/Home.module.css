@@ -4,4 +4,10 @@
 
 .Boards {
     display: flex;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
+.Boards div, .Boards form {
+    flex-shrink: 0;
 }

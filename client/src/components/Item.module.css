@@ -1,3 +1,67 @@
 .Item {
-    
+    padding: 15px 10px 7px 10px;
+    margin: 12px 0;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.Row {
+    display: flex;
+}
+
+.Row p {
+    padding-left: 10px;
+    margin: 0;
+}
+
+.UpDownButtons {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.LeftRightButtons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.LeftRightButtons button {
+    margin: 2px;
+}
+
+.DeleteButton {
+    flex-grow: 1;
+    justify-content: flex-end;
+    display: flex;
+}
+
+.DeleteButton button {
+    color: #c0bfbf;
+    margin-right: 5px;
+    height: 25px;
+    align-self: center;
+}
+
+.DeleteButton button:hover {
+    color: black;
+}
+
+.UpDownButtons button, .LeftRightButtons button, .DeleteButton button {
+    background: transparent !important;
+    border: none;
+    padding: 0;
+}
+
+.UpDownButtons button:disabled, .LeftRightButtons button:disabled {
+    cursor: not-allowed;
+    color: graytext;
+}
+.UpDownButtons button:hover, .LeftRightButtons button:hover {
+    color: #33ab9f;
+}
+
+.UpDownButtons button:disabled:hover, .LeftRightButtons button:disabled:hover {
+    color: graytext;
 }

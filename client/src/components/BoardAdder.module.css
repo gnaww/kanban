@@ -1,7 +1,38 @@
-.BoardAdder {
-    padding: 15px;
+.BoardAdder, .BoardAdderDark {
     margin: 0 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
+    width: 250px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.BoardAdderInput {
+    margin: 0;
+    color: #00695f;
+}
+
+.BoardAdderInput label {
+    color: #00695f !important;
+}
+
+.BoardAdderInput div {
+    color: #00695f !important;
+}
+
+.BoardAdderInput div input, .BoardAdderInput div input:focus {
+    color: #00695f !important;
+}
+
+.BoardAdder div input:after {
+    color: #00695f !important;
+}
+
+.BoardAdder button {
+    margin: 15px;
+    width: 150px;
+    height: 40px;
 }

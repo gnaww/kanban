@@ -1,5 +1,4 @@
 import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
 import Delete from '@material-ui/icons/Delete';
 import styles from './Board.module.css';
 import Item from './Item';
@@ -18,14 +17,18 @@ const Board = props => {
 
     return (
         <div className={styles.Board}>
-            <IconButton onClick={deleteBoard}>
-                <Delete fontSize="small" />
-            </IconButton>
-            <h1>{ name }</h1>
-            <div>
-                { items.map((item, idx) => <Item key={idx} boardId={id} id={idx} content={item} itemsLength={items.length} boardsLength={boardsLength} {...editItemFunctions} />) }
+            <div className={styles.BoardHeader}>
+                <h1>{ name }</h1>
+                <button className={styles.DeleteButton} onClick={deleteBoard}>
+                    <Delete />
+                </button>
             </div>
-            <ItemAdder boardId={id} handleAddItem={handleAddItem} />
+            <div className={styles.ItemsList}>
+                <div>
+                    { items.map((item, idx) => <Item key={idx} boardId={id} id={idx} content={item} itemsLength={items.length} boardsLength={boardsLength} {...editItemFunctions} />) }
+                </div>
+                <ItemAdder boardId={id} handleAddItem={handleAddItem} />
+            </div>
         </div>
     );
 }

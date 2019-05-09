@@ -202,6 +202,7 @@ class Home extends Component {
         fetch('/api/boards')
             .then(res => res.json())
             .then(resJSON => {
+                console.log(resJSON);
                 if (typeof resJSON === "object") {
                     this.setState({ boards: resJSON, loading: false });
                 }
@@ -233,8 +234,8 @@ class Home extends Component {
                 <h1>Your Kanban Boards</h1>
                 { notification && <Notification {...{ notification,nightmode, setNotification }} /> }
                 <div className={styles.Boards}>
-                    <BoardAdder handleAddBoard={this.handleAddBoard} />
                     <BoardList boards={this.state.boards} {...boardFunctions} loading={this.state.loading} />
+                    <BoardAdder handleAddBoard={this.handleAddBoard} />
                 </div>
             </div>
         );

@@ -1,5 +1,4 @@
 import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
 import Delete from '@material-ui/icons/Delete';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
@@ -33,22 +32,30 @@ const Item = props => {
 
     return (
         <Paper className={styles.Item}>
-            { `${id}) ${content}` }
-            <IconButton onClick={deleteItem}>
-                <Delete fontSize="small" />
-            </IconButton>
-            <IconButton disabled={id === 0} onClick={moveItemUp}>
-                <KeyboardArrowUp fontSize="small" />
-            </IconButton>
-            <IconButton disabled={id === itemsLength - 1} onClick={moveItemDown}>
-                <KeyboardArrowDown fontSize="small" />
-            </IconButton>
-            <IconButton disabled={boardId === 0} onClick={moveItemLeft}>
-                <KeyboardArrowLeft fontSize="small" />
-            </IconButton>
-            <IconButton disabled={boardId === boardsLength - 1} onClick={moveItemRight}>
-                <KeyboardArrowRight fontSize="small" />
-            </IconButton>
+            <div className={styles.Row}>
+                <div className={styles.UpDownButtons}>
+                    <button className={styles.ArrowButton} disabled={id === 0} onClick={moveItemUp}>
+                        <KeyboardArrowUp />
+                    </button>
+                    <button className={styles.ArrowButton} disabled={id === itemsLength - 1} onClick={moveItemDown}>
+                        <KeyboardArrowDown />
+                    </button>
+                </div>
+                <p>{ content }</p>
+                <div className={styles.DeleteButton}>
+                    <button onClick={deleteItem}>
+                        <Delete fontSize="small" />
+                    </button>
+                </div>
+            </div>
+            <div className={`${styles.Row} ${styles.LeftRightButtons}`}>
+                <button className={styles.ArrowButton} disabled={boardId === 0} onClick={moveItemLeft}>
+                    <KeyboardArrowLeft />
+                </button>
+                <button className={styles.ArrowButton} disabled={boardId === boardsLength - 1} onClick={moveItemRight}>
+                    <KeyboardArrowRight />
+                </button>
+            </div>
         </Paper>
     );
 }

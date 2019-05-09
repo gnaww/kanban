@@ -1,4 +1,17 @@
 .BoardList {
     display: flex;
-    overflow-x: auto;
+    margin-left: 20px;
+}
+
+.Loading {
+    color: #00695f;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    padding-right: 20px;
+}
+
+.Loading div {
+    color: #00695f;
 }

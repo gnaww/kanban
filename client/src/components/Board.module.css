@@ -3,5 +3,34 @@
     margin: 0 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
+    width: 300px;
+}
+
+.BoardHeader {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+
+.BoardHeader h1 {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.ItemsList {
+    overflow-y: auto;
+    max-height: 450px;
+}
+
+.DeleteButton {
+    background-color: transparent !important;
+    border: none;
+    cursor: pointer;
+    color: #c0bfbf;
+}
+
+.DeleteButton:hover {
+    color: black;
 }

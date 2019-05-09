@@ -35,7 +35,7 @@ class ItemAdder extends Component {
                         onChange={this.handleItemChange}
                         margin="normal"
                     />
-                    <Button type="submit" variant="contained" color="secondary">
+                    <Button size="small" type="submit" variant="contained" color="secondary">
                         <AddBox />
                     </Button>
                 </Paper>

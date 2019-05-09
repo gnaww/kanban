@@ -32,6 +32,7 @@ class BoardAdder extends Component {
                     value={this.state.newBoardName}
                     onChange={this.handleBoardNameChange}
                     margin="normal"
+                    className={styles.BoardAdderInput}
                 />
                 <Button type="submit" variant="contained" color="secondary">
                     Add Board
