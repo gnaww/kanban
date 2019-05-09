@@ -202,7 +202,6 @@ class Home extends Component {
         fetch('/api/boards')
             .then(res => res.json())
             .then(resJSON => {
-                console.log(resJSON);
                 if (typeof resJSON === "object") {
                     this.setState({ boards: resJSON, loading: false });
                 }

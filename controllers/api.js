@@ -123,7 +123,6 @@ const boards = boardsCollection => async (req, res) => {
         }
     }
     else {
-        console.log('hi"0')
         return res.status(200).json('Login session has expired, please log in again.');
     }
 };
