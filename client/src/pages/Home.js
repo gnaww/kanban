@@ -205,9 +205,6 @@ class Home extends Component {
                 if (typeof resJSON === "object") {
                     this.setState({ boards: resJSON, loading: false });
                 }
-                else {
-                    setNotification(resJSON);
-                }
             })
             .catch(err => setNotification('Something went wrong while fetching your boards. Please refresh the page.'));
     }
