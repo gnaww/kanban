@@ -23,7 +23,7 @@ const BoardList = props => {
                 { 
                     boards.length !== 0 ? 
                         boards.map((board, idx) => {
-                            return <Board key={idx} id={idx} name={board.name} items={board.items} boardsLength={boards.length} {...editBoardFunctions} nightmode={nightmode} />
+                            return <Board key={idx} id={idx} name={board.name} items={board.items} color={board.color} boardsLength={boards.length} {...editBoardFunctions} nightmode={nightmode} />
                         }) 
                     : <h2>Add a new board to get started!</h2> 
                 }

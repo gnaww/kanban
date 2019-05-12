@@ -58,7 +58,9 @@ class Home extends Component {
         }
 
         if (valid) {
-            this.setState({ boards: [...this.state.boards, { name: boardName, items: [] }]})
+            const randomHexColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
+            this.setState({ boards: [...this.state.boards, { name: boardName, items: [], color: randomHexColor
+        }]})
         }
     }
 

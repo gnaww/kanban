@@ -5,7 +5,7 @@ import Item from './Item';
 import ItemAdder from './ItemAdder';
 
 const Board = props => {
-    const { id, name, items, boardsLength, handleDeleteBoard, handleAddItem, handleDeleteItem, handleReorderItem, handleMoveItem, nightmode } = props;
+    const { id, name, items, boardsLength, handleDeleteBoard, handleAddItem, handleDeleteItem, handleReorderItem, handleMoveItem, nightmode, color } = props;
 
     const editItemFunctions = {
         handleDeleteItem, handleReorderItem, handleMoveItem
@@ -16,7 +16,7 @@ const Board = props => {
     }
 
     return (
-        <div className={nightmode ? styles.BoardDark : styles.Board}>
+        <div className={nightmode ? styles.BoardDark : styles.Board} style={{borderTop: `4px solid ${color}`}}>
             <div className={styles.BoardHeader}>
                 <h1>{ name }</h1>
                 <button className={nightmode ? styles.DeleteButtonDark : styles.DeleteButton} onClick={deleteBoard}>
