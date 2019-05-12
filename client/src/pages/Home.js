@@ -64,6 +64,41 @@ class Home extends Component {
         }
     }
 
+    handleMoveBoard = (direction, boardId) => {
+        const { setNotification } = this.props;
+        setNotification('');
+        
+        let newBoards = this.state.boards.map(board => ({...board}));
+        
+        if (direction === 'left') {
+            const newBoardIdx = boardId - 1;
+            if (newBoardIdx < 0) {
+                setNotification('Could not move board.');
+            }
+            else {
+                let temp = newBoards[boardId];
+                newBoards[boardId] = newBoards[newBoardIdx];
+                newBoards[newBoardIdx] = temp;
+                this.setState({ boards: newBoards });
+            }
+        }
+        else if (direction === 'right') {
+            const newBoardIdx = boardId + 1;
+            if (newBoardIdx >= this.state.boards.length) {
+                setNotification('Could not move board.');
+            }
+            else {
+                let temp = newBoards[boardId];
+                newBoards[boardId] = newBoards[newBoardIdx];
+                newBoards[newBoardIdx] = temp;
+                this.setState({ boards: newBoards });
+            }
+        }
+        else {
+            setNotification('Could not move board.');
+        }
+    }
+
     handleDeleteBoard = idx => {
         const { setNotification } = this.props;
         setNotification('');
@@ -90,7 +125,7 @@ class Home extends Component {
         else {
             const newBoards = this.state.boards.map((board, idx) => {
                 if (idx === boardId) {
-                    return { name: board.name, items: [...board.items, newItem] };
+                    return { color: board.color, name: board.name, items: [...board.items, newItem] };
                 }
                 else {
                     return board;
@@ -114,7 +149,7 @@ class Home extends Component {
             const newBoards = this.state.boards.map((board, idx) => {
                 if (idx === boardId) {
                     const newItems = board.items.filter((_, i) => i !== itemId);
-                    return { name: board.name, items: newItems };
+                    return { color: board.color, name: board.name, items: newItems };
                 }
                 else {
                     return board;
@@ -221,6 +256,7 @@ class Home extends Component {
         const { notification, nightmode, setNotification } = this.props;
         const boardFunctions = {
             handleDeleteBoard: this.handleDeleteBoard,
+            handleMoveBoard: this.handleMoveBoard,
             handleAddItem: this.handleAddItem,
             handleDeleteItem: this.handleDeleteItem,
             handleReorderItem: this.handleReorderItem,

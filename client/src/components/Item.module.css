@@ -76,6 +76,7 @@
     cursor: not-allowed;
     color: graytext;
 }
+
 .UpDownButtons button:hover, .LeftRightButtons button:hover, .UpDownButtonsDark button:hover, .LeftRightButtonsDark button:hover {
     color: #33ab9f;
 }

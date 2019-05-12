@@ -17,10 +17,46 @@
     padding: 5px 0;
 }
 
+.BoardHeader div {
+    display: flex;
+}
+
 .BoardHeader h1 {
     margin: 0;
     white-space: pre-wrap;
     word-wrap: break-word;
+}
+
+.LeftRightButtons, .LeftRightButtonsDark {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.LeftRightButtons button, .LeftRightButtonsDark button {
+    margin: 2px;
+}
+
+.LeftRightButtons button, .LeftRightButtonsDark button {
+    background: transparent !important;
+    border: none;
+    padding: 0;
+}
+
+.LeftRightButtonsDark button, .DeleteButtonDark {
+    color: white;
+}
+
+.LeftRightButtons button:disabled, .LeftRightButtonsDark button:disabled {
+    cursor: not-allowed;
+    color: graytext;
+}
+
+.LeftRightButtons button:hover, .LeftRightButtonsDark button:hover {
+    color: #33ab9f;
+}
+
+.LeftRightButtons button:disabled:hover, .LeftRightButtonsDark button:disabled:hover {
+    color: graytext;
 }
 
 .ItemsList {
@@ -33,10 +69,6 @@
     border: none;
     cursor: pointer;
     color: #c0bfbf;
-}
-
-.DeleteButtonDark {
-    color: white;
 }
 
 .DeleteButton:hover {
