@@ -1,4 +1,4 @@
-.Board {
+.Board, .BoardDark {
     padding: 15px;
     margin: 0 12px;
     border: 1px solid #ccc;
@@ -6,11 +6,15 @@
     width: 300px;
 }
 
+.BoardDark {
+    border: 1px solid #2f3437;
+    background-color: #7d7d7d;
+}
+
 .BoardHeader {
     display: flex;
     justify-content: space-between;
-    padding-top: 5px;
-    padding-bottom: 15px;
+    padding: 5px 0;
 }
 
 .BoardHeader h1 {
@@ -24,13 +28,21 @@
     max-height: 450px;
 }
 
-.DeleteButton {
+.DeleteButton, .DeleteButtonDark {
     background-color: transparent !important;
     border: none;
     cursor: pointer;
     color: #c0bfbf;
 }
 
+.DeleteButtonDark {
+    color: white;
+}
+
 .DeleteButton:hover {
     color: black;
+}
+
+.DeleteButtonDark:hover {
+    color: #33ab9f
 }

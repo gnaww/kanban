@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import CustomTextField from './CustomTextField';
 import AddBox from '@material-ui/icons/AddBox';
 import styles from './BoardAdder.module.css';
 
@@ -26,14 +26,8 @@ class BoardAdder extends Component {
 
     render() {
         return (
-            <form className={styles.BoardAdder} onSubmit={this.addBoard}>
-                <TextField
-                    label="New board name"
-                    value={this.state.newBoardName}
-                    onChange={this.handleBoardNameChange}
-                    margin="normal"
-                    className={styles.BoardAdderInput}
-                />
+            <form className={this.props.nightmode ? styles.BoardAdderDark : styles.BoardAdder} onSubmit={this.addBoard}>
+                <CustomTextField newBoardName={this.state.newBoardName} handleBoardNameChange={this.handleBoardNameChange} formType="board" nightmode={this.props.nightmode} />
                 <Button type="submit" variant="contained" color="secondary">
                     Add Board
                     <AddBox />

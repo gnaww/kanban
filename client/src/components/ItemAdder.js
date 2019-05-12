@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import AddBox from '@material-ui/icons/AddBox';
-import TextField from '@material-ui/core/TextField';
+import CustomTextField from './CustomTextField';
 import Paper from '@material-ui/core/Paper';
 import styles from './ItemAdder.module.css';
 
@@ -28,13 +28,8 @@ class ItemAdder extends Component {
     render () {
         return (
             <form onSubmit={this.addItem}>
-                <Paper className={styles.ItemAdder}>
-                    <TextField
-                        label="Add new item"
-                        value={this.state.newItem}
-                        onChange={this.handleItemChange}
-                        margin="normal"
-                    />
+                <Paper className={this.props.nightmode ? styles.ItemAdderDark : styles.ItemAdder}>
+                    <CustomTextField newBoardName={this.state.newItem} handleBoardNameChange={this.handleItemChange} formType="item" nightmode={this.props.nightmode} />
                     <Button size="small" type="submit" variant="contained" color="secondary">
                         <AddBox />
                     </Button>

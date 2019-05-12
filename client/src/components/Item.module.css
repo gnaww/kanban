@@ -1,10 +1,16 @@
-.Item {
+.Item, .ItemDark {
     padding: 15px 10px 7px 10px;
     margin: 12px 0;
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+.ItemDark {
+    border-left: 1px solid #2f3437;
+    border-right: 1px solid #2f3437;
+    background-color: #474c50 !important;
 }
 
 .Row {
@@ -16,52 +22,64 @@
     margin: 0;
 }
 
-.UpDownButtons {
+.UpDownButtons, .UpDownButtonsDark {
     align-self: center;
     display: flex;
     flex-direction: column;
 }
 
-.LeftRightButtons {
+.LeftRightButtons, .LeftRightButtonsDark {
     display: flex;
     justify-content: flex-end;
 }
 
-.LeftRightButtons button {
+.LeftRightButtons button, .LeftRightButtonsDark button {
     margin: 2px;
 }
 
-.DeleteButton {
+.DeleteButton, .DeleteButtonDark {
     flex-grow: 1;
     justify-content: flex-end;
     display: flex;
 }
 
-.DeleteButton button {
+.DeleteButton button, .DeleteButtonDark button {
     color: #c0bfbf;
     margin-right: 5px;
     height: 25px;
     align-self: center;
 }
 
+.DeleteButtonDark button {
+    color: white;
+}
+
 .DeleteButton button:hover {
     color: black;
 }
 
-.UpDownButtons button, .LeftRightButtons button, .DeleteButton button {
+.DeleteButtonDark button:hover {
+    color: #33ab9f;
+}
+
+.UpDownButtons button, .LeftRightButtons button, .DeleteButton button, .UpDownButtonsDark button, .LeftRightButtonsDark button, .DeleteButtonDark button {
     background: transparent !important;
     border: none;
     padding: 0;
 }
 
-.UpDownButtons button:disabled, .LeftRightButtons button:disabled {
+.DeleteButtonDark button, .LeftRightButtonsDark button, .UpDownButtonsDark button {
+    color: white;
+}
+
+.UpDownButtons button:disabled, .LeftRightButtons button:disabled, .UpDownButtonsDark button:disabled, .LeftRightButtonsDark button:disabled {
     cursor: not-allowed;
     color: graytext;
 }
-.UpDownButtons button:hover, .LeftRightButtons button:hover {
+.UpDownButtons button:hover, .LeftRightButtons button:hover, .UpDownButtonsDark button:hover, .LeftRightButtonsDark button:hover {
     color: #33ab9f;
 }
 
-.UpDownButtons button:disabled:hover, .LeftRightButtons button:disabled:hover {
+.UpDownButtons button:disabled:hover, .LeftRightButtons button:disabled:hover, .UpDownButtonsDark button:disabled:hover, .LeftRightButtonsDark button:disabled:hover {
     color: graytext;
 }

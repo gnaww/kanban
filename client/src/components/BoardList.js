@@ -4,7 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Board from './Board';
 
 const BoardList = props => {
-    const { boards, loading, handleDeleteBoard, handleAddItem, handleDeleteItem, handleReorderItem, handleMoveItem } = props;
+    const { boards, loading, handleDeleteBoard, handleAddItem, handleDeleteItem, handleReorderItem, handleMoveItem, nightmode } = props;
 
     const editBoardFunctions = {
         handleDeleteBoard, handleAddItem, handleDeleteItem, handleReorderItem, handleMoveItem
@@ -23,7 +23,7 @@ const BoardList = props => {
                 { 
                     boards.length !== 0 ? 
                         boards.map((board, idx) => {
-                            return <Board key={idx} id={idx} name={board.name} items={board.items} boardsLength={boards.length} {...editBoardFunctions} />
+                            return <Board key={idx} id={idx} name={board.name} items={board.items} boardsLength={boards.length} {...editBoardFunctions} nightmode={nightmode} />
                         }) 
                     : <h2>Add a new board to get started!</h2> 
                 }

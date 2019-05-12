@@ -233,8 +233,8 @@ class Home extends Component {
                 <h1>Your Kanban Boards</h1>
                 { notification && <Notification {...{ notification,nightmode, setNotification }} /> }
                 <div className={styles.Boards}>
-                    <BoardList boards={this.state.boards} {...boardFunctions} loading={this.state.loading} />
-                    <BoardAdder handleAddBoard={this.handleAddBoard} />
+                    <BoardList boards={this.state.boards} {...boardFunctions} loading={this.state.loading} nightmode={nightmode} />
+                    <BoardAdder handleAddBoard={this.handleAddBoard} nightmode={nightmode} />
                 </div>
             </div>
         );

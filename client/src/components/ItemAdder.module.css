@@ -1,4 +1,4 @@
-.ItemAdder {
+.ItemAdder, .ItemAdderDark {
     padding: 15px;
     margin: 12px 0;
     border-left: 1px solid #ccc;
@@ -10,11 +10,17 @@
     align-items: center;
 }
 
-.ItemAdder div {
+.ItemAdderDark {
+    border-left: 1px solid #2f3437;
+    border-right: 1px solid #2f3437;
+    background-color: #474c50 !important;
+}
+
+.ItemAdder div, .ItemAdderDark div {
     margin: 0;
 }
 
-.ItemAdder button {
+.ItemAdder button, .ItemAdderDark button {
     padding: 0;
     height: 40px;
     max-width: 30px;
