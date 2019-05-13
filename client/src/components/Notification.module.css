@@ -1,4 +1,4 @@
-.Notification {
+.Notification, .NotificationDark {
     width: 90% !important;
     margin: 20px auto;
     border-left: 5px solid #FEC627;
@@ -13,20 +13,12 @@
     font-weight: bold;
 }
 
-.Notification span {
+.Notification span, .NotificationDark span {
     display: inline !important;
 }
 
 .NotificationDark {
-    width: 90% !important;
-    margin: 20px auto;
-    border-left: 5px solid #FEC627;
-    padding: 10px;
-    color: black;
     background-color: #e0e0e0 !important;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .CloseButton {
