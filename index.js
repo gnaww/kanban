@@ -34,7 +34,7 @@ catch(err) {
     serviceAccount.type = process.env.type;
     serviceAccount.project_id = process.env.project_id;
     serviceAccount.private_key_id = process.env.private_key_id;
-    serviceAccount.private_key = process.env.private_key;
+    serviceAccount.private_key = process.env.private_key.replace(/\\n/g, '\n');
     serviceAccount.client_email = process.env.client_email;
     serviceAccount.client_id = process.env.client_id;
     serviceAccount.auth_uri = process.env.auth_uri;
