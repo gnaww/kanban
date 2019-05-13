@@ -31,16 +31,16 @@ try {
     serviceAccount = require('./service-account.json');
 }
 catch(err) {
-    serviceAccount.type = ENV['type'];
-    serviceAccount.project_id = ENV['project_id'];
-    serviceAccount.private_key_id = ENV['private_key_id'];
-    serviceAccount.private_key = ENV['private_key'];
-    serviceAccount.client_email = ENV['client_email'];
-    serviceAccount.client_id = ENV['client_id'];
-    serviceAccount.auth_uri = ENV['auth_uri'];
-    serviceAccount.token_uri = ENV['token_uri'];
-    serviceAccount.auth_provider_x509_cert_url = ENV['auth_provider_x509_cert_url'];
-    serviceAccount.client_x509_cert_url = ENV['client_x509_cert_url'];
+    serviceAccount.type = process.env.type;
+    serviceAccount.project_id = process.env.project_id;
+    serviceAccount.private_key_id = process.env.private_key_id;
+    serviceAccount.private_key = process.env.private_key;
+    serviceAccount.client_email = process.env.client_email;
+    serviceAccount.client_id = process.env.client_id;
+    serviceAccount.auth_uri = process.env.auth_uri;
+    serviceAccount.token_uri = process.env.token_uri;
+    serviceAccount.auth_provider_x509_cert_url = process.env.auth_provider_x509_cert_url;
+    serviceAccount.client_x509_cert_url = process.env.client_x509_cert_url;
 }
 
 admin.initializeApp({
