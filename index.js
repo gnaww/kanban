@@ -5,7 +5,6 @@ const session = require('express-session');
 const bcrypt = require('bcryptjs');
 const path = require('path');
 const favicon = require('serve-favicon');
-const serviceAccount = require('./service-account.json');
 const api = require('./controllers/api');
 
 const app = express();
@@ -26,6 +25,23 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
     }
 }));
+
+let serviceAccount = {};
+try {
+    serviceAccount = require('./service-account.json');
+}
+catch(err) {
+    serviceAccount.type = ENV['type'];
+    serviceAccount.project_id = ENV['project_id'];
+    serviceAccount.private_key_id = ENV['private_key_id'];
+    serviceAccount.private_key = ENV['private_key'];
+    serviceAccount.client_email = ENV['client_email'];
+    serviceAccount.client_id = ENV['client_id'];
+    serviceAccount.auth_uri = ENV['auth_uri'];
+    serviceAccount.token_uri = ENV['token_uri'];
+    serviceAccount.auth_provider_x509_cert_url = ENV['auth_provider_x509_cert_url'];
+    serviceAccount.client_x509_cert_url = ENV['client_x509_cert_url'];
+}
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
