@@ -2,29 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const admin = require('firebase-admin');
 const session = require('express-session');
+const FirebaseStore = require('connect-session-firebase')(session);
 const bcrypt = require('bcryptjs');
 const path = require('path');
 const favicon = require('serve-favicon');
 const api = require('./controllers/api');
-
-const app = express();
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(favicon(path.join(__dirname, 'client', 'public', 'favicon.ico')));
-app.use(express.static(path.join(__dirname, 'client/build')))
-
-const COOKIE_SECRET = 'keyboard cat';
-app.use(session({
-    name: 'user_sid',
-    secret: COOKIE_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    unset: 'destroy',
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
-    }
-}));
 
 let serviceAccount = {};
 try {
@@ -43,10 +25,32 @@ catch(err) {
     serviceAccount.client_x509_cert_url = process.env.client_x509_cert_url;
 }
 
-admin.initializeApp({
+const ref = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://kanban-9c05f.firebaseio.com"
 });
+
+const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(favicon(path.join(__dirname, 'client', 'public', 'favicon.ico')));
+app.use(express.static(path.join(__dirname, 'client/build')))
+
+const COOKIE_SECRET = process.env.COOKIE_SECRET || 'keyboard cat';
+app.use(session({
+    name: 'user_sid',
+    store: new FirebaseStore({
+        database: ref.database()
+    }),
+    secret: COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    unset: 'destroy',
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
+    }
+}));
 
 const db = admin.firestore();
 
