@@ -34,12 +34,10 @@
 
 .LeftRightButtons button, .LeftRightButtonsDark button {
     margin: 2px;
-}
-
-.LeftRightButtons button, .LeftRightButtonsDark button {
     background: transparent !important;
     border: none;
     padding: 0;
+    cursor: pointer;
 }
 
 .LeftRightButtonsDark button, .DeleteButtonDark {
@@ -71,10 +69,6 @@
     color: #c0bfbf;
 }
 
-.DeleteButton:hover {
-    color: black;
-}
-
-.DeleteButtonDark:hover {
-    color: #33ab9f
+.DeleteButton:hover, .DeleteButtonDark:hover {
+    color: #33ab9f;
 }
