@@ -111,6 +111,15 @@ class Home extends Component {
             this.setState({ boards: newBoards });
         }
     }
+    
+    handleEditBoard = (newBoard, boardId) => {
+        const { setNotification } = this.props;
+        setNotification('');
+        
+        let newBoards = this.state.boards.map(board => ({...board}));
+        newBoards[boardId].name = newBoard;
+        this.setState({ boards: newBoards });
+    }
 
     handleAddItem = (boardId, newItem) => {
         const { setNotification } = this.props;
@@ -230,6 +239,15 @@ class Home extends Component {
             setNotification('Could not move item to different board.');
         }
     }
+    
+    handleEditItem = (newItem, boardId, itemId) => {
+        const { setNotification } = this.props;
+        setNotification('');
+        
+        let newBoards = this.state.boards.map(board => ({...board}));
+        newBoards[boardId].items[itemId] = newItem;
+        this.setState({ boards: newBoards });
+    }
 
     componentDidMount = () => {
         const { setNotification, authenticate } = this.props;
@@ -257,10 +275,12 @@ class Home extends Component {
         const boardFunctions = {
             handleDeleteBoard: this.handleDeleteBoard,
             handleMoveBoard: this.handleMoveBoard,
+            handleEditBoard: this.handleEditBoard,
             handleAddItem: this.handleAddItem,
             handleDeleteItem: this.handleDeleteItem,
             handleReorderItem: this.handleReorderItem,
-            handleMoveItem: this.handleMoveItem
+            handleMoveItem: this.handleMoveItem,
+            handleEditItem: this.handleEditItem
         }
 
         return (

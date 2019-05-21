@@ -4,10 +4,10 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Board from './Board';
 
 const BoardList = props => {
-    const { boards, loading, handleDeleteBoard, handleMoveBoard, handleAddItem, handleDeleteItem, handleReorderItem, handleMoveItem, nightmode } = props;
+    const { boards, loading, handleDeleteBoard, handleMoveBoard, handleEditBoard, handleAddItem, handleDeleteItem, handleReorderItem, handleMoveItem, handleEditItem, nightmode } = props;
 
     const editBoardFunctions = {
-        handleDeleteBoard, handleMoveBoard, handleAddItem, handleDeleteItem, handleReorderItem, handleMoveItem
+        handleDeleteBoard, handleMoveBoard, handleEditBoard, handleAddItem, handleDeleteItem, handleReorderItem, handleMoveItem, handleEditItem
     }
 
     if (loading) {
