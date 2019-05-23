@@ -37,7 +37,9 @@ class Board extends Component {
         handleMoveBoard('right', id);
     }
     
-    editBoard = () => {
+    editBoard = event => {
+        event.preventDefault();
+        
         const { id, handleEditBoard } = this.props;
         handleEditBoard(this.state.newBoardName, id);
         this.toggleEdit();
