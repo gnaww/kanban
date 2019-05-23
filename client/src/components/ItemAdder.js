@@ -13,7 +13,7 @@ class ItemAdder extends Component {
         };
     }
 
-    handleItemChange = (event) => {
+    handleItemChange = event => {
         this.setState({ newItem: event.target.value });
     }
 
@@ -29,7 +29,7 @@ class ItemAdder extends Component {
         return (
             <form onSubmit={this.addItem}>
                 <Paper className={this.props.nightmode ? styles.ItemAdderDark : styles.ItemAdder}>
-                    <CustomTextField newBoardName={this.state.newItem} handleBoardNameChange={this.handleItemChange} formType="item" nightmode={this.props.nightmode} />
+                    <CustomTextField inputValue={this.state.newItem} handleInputValueChange={this.handleItemChange} formType="item" nightmode={this.props.nightmode} />
                     <Button size="small" type="submit" variant="contained" color="secondary">
                         <AddBox />
                     </Button>

@@ -33,82 +33,55 @@ const styles = theme => ({
 });
 
 const CustomTextField = props => {
-    const { classes, newBoardName, handleBoardNameChange, formType, nightmode } = props;
+    const { classes, inputValue, handleInputValueChange, formType, nightmode } = props;
+
+    let placeholder = '';
 
     if (formType === "board") {
-        return (
-            <FormControl>
-                <InputLabel
-                    htmlFor="new-board"
-                    classes={ 
-                    nightmode ? 
-                    {
-                        root: classes.cssLabelDark,
-                        focused: classes.cssFocused,
-                    }
-                    : 
-                    {
-                        root: classes.cssLabel,
-                        focused: classes.cssFocused,
-                    }}
-                >
-                    New board name
-                </InputLabel>
-                <Input
-                    id="new-board"
-                    classes={
-                    nightmode ?
-                    {
-                        root: classes.cssInputDark,
-                        underline: classes.cssUnderlineDark,
-                    }
-                    :
-                    {
-                        underline: classes.cssUnderline,
-                    }}
-                    value={newBoardName}
-                    onChange={handleBoardNameChange}
-                />
-            </FormControl>
-        );
+        placeholder = "New board name";
     }
     else if (formType === "item") {
-        return (
-            <FormControl>
-                <InputLabel
-                    htmlFor="new-board"
-                    classes={ 
-                    nightmode ? 
-                    {
-                        root: classes.cssLabelDark,
-                        focused: classes.cssFocused,
-                    }
-                    : 
-                    {
-                        root: classes.cssLabel,
-                        focused: classes.cssFocused,
-                    }}
-                >
-                    Add new item
-                </InputLabel>
-                <Input
-                    id="new-board"
-                    classes={
-                    nightmode ?
-                    {
-                        root: classes.cssInputDark,
-                        underline: classes.cssUnderlineDark,
-                    }
-                    :
-                    {
-                        underline: classes.cssUnderline,
-                    }}
-                    value={newBoardName}
-                    onChange={handleBoardNameChange}
-                />
-            </FormControl>
-        );
+        placeholder = "Add new item";
     }
+    else if (formType === "editBoard") {
+        placeholder = "Edit board name";
+    }
+
+    return (
+        <FormControl>
+            <InputLabel
+                htmlFor="new-board"
+                classes={ 
+                nightmode ? 
+                {
+                    root: classes.cssLabelDark,
+                    focused: classes.cssFocused,
+                }
+                : 
+                {
+                    root: classes.cssLabel,
+                    focused: classes.cssFocused,
+                }}
+            >
+                { placeholder }
+            </InputLabel>
+            <Input
+                id="new-board"
+                classes={
+                nightmode ?
+                {
+                    root: classes.cssInputDark,
+                    underline: classes.cssUnderlineDark,
+                }
+                :
+                {
+                    underline: classes.cssUnderline,
+                }}
+                value={inputValue}
+                onChange={handleInputValueChange}
+            />
+        </FormControl>
+    );
 }
 
 export default withStyles(styles)(CustomTextField);

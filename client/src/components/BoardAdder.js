@@ -12,7 +12,7 @@ class BoardAdder extends Component {
         };
     }
 
-    handleBoardNameChange = (event) => {
+    handleBoardNameChange = event => {
         this.setState({ newBoardName: event.target.value });
     }
 
@@ -27,7 +27,7 @@ class BoardAdder extends Component {
     render() {
         return (
             <form className={this.props.nightmode ? styles.BoardAdderDark : styles.BoardAdder} onSubmit={this.addBoard}>
-                <CustomTextField newBoardName={this.state.newBoardName} handleBoardNameChange={this.handleBoardNameChange} formType="board" nightmode={this.props.nightmode} />
+                <CustomTextField inputValue={this.state.newBoardName} handleInputValueChange={this.handleBoardNameChange} formType="board" nightmode={this.props.nightmode} />
                 <Button type="submit" variant="contained" color="secondary">
                     Add Board
                     <AddBox />
