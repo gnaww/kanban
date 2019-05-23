@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import Delete from '@material-ui/icons/Delete';
 import Edit from '@material-ui/icons/Edit';
+import Save from '@material-ui/icons/Save';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import styles from './Board.module.css';
 import Item from './Item';
 import ItemAdder from './ItemAdder';
+import CustomTextField from './CustomTextField';
 
 class Board extends Component {
     constructor(props) {
         super(props);
         this.state = {
             editing: false,
-            newBoard: ''
+            newBoardName: props.name
         };
+    }
+
+    handleBoardNameChange = event => {
+        this.setState({ newBoardName: event.target.value });
     }
 
     deleteBoard = () => {
@@ -31,9 +37,16 @@ class Board extends Component {
         handleMoveBoard('right', id);
     }
     
-    editBoard = newBoard => {
+    editBoard = () => {
         const { id, handleEditBoard } = this.props;
-        handleEditBoard(newBoard, id);
+        handleEditBoard(this.state.newBoardName, id);
+        this.toggleEdit();
+    }
+
+    toggleEdit = () => {
+        this.setState(prevState => ({
+            editing: !prevState.editing
+        }));
     }
     
     render() {
@@ -46,20 +59,37 @@ class Board extends Component {
         return (
             <div className={nightmode ? styles.BoardDark : styles.Board} style={{borderTop: `4px solid ${color}`}}>
                 <div className={styles.BoardHeader}>
-                    <h1>{ name }</h1>
-                    <div>
-                        <div className={nightmode ? styles.LeftRightButtonsDark : styles.LeftRightButtons}>
-                            <button disabled={id === 0} onClick={this.moveBoardLeft}>
-                                <KeyboardArrowLeft />
+                    { 
+                        this.state.editing ?
+                        <form onSubmit={this.editBoard}>
+                            <CustomTextField inputValue={this.state.newBoardName} handleInputValueChange={this.handleBoardNameChange} formType="editBoard" nightmode={this.props.nightmode} />
+                            <button type="submit" className={nightmode ? styles.EditButtonDark : styles.EditButton}>
+                                <Save />
                             </button>
-                            <button disabled={id === boardsLength - 1} onClick={this.moveBoardRight}>
-                                <KeyboardArrowRight />
-                            </button>
-                        </div>
-                        <button className={nightmode ? styles.DeleteButtonDark : styles.DeleteButton} onClick={this.deleteBoard}>
-                            <Delete />
-                        </button>
-                    </div>
+                        </form>
+                        :
+                        <>
+                            <div>
+                                <h1>{ name }</h1>
+                                <button className={nightmode ? styles.EditButtonDark : styles.EditButton} onClick={this.toggleEdit}>
+                                    <Edit />
+                                </button>
+                            </div>
+                            <div>
+                                <div className={nightmode ? styles.LeftRightButtonsDark : styles.LeftRightButtons}>
+                                    <button disabled={id === 0} onClick={this.moveBoardLeft}>
+                                        <KeyboardArrowLeft />
+                                    </button>
+                                    <button disabled={id === boardsLength - 1} onClick={this.moveBoardRight}>
+                                        <KeyboardArrowRight />
+                                    </button>
+                                </div>
+                                <button className={nightmode ? styles.DeleteButtonDark : styles.DeleteButton} onClick={this.deleteBoard}>
+                                    <Delete />
+                                </button>
+                            </div>
+                        </>
+                    }
                 </div>
                 <div className={styles.ItemsList}>
                     <div>

@@ -116,9 +116,14 @@ class Home extends Component {
         const { setNotification } = this.props;
         setNotification('');
         
-        let newBoards = this.state.boards.map(board => ({...board}));
-        newBoards[boardId].name = newBoard;
-        this.setState({ boards: newBoards });
+        if (!newBoard) {
+            setNotification('You must give the board a name.');
+        }
+        else {
+            let newBoards = this.state.boards.map(board => ({...board}));
+            newBoards[boardId].name = newBoard;
+            this.setState({ boards: newBoards });
+        }
     }
 
     handleAddItem = (boardId, newItem) => {

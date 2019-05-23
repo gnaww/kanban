@@ -17,14 +17,15 @@
     padding: 5px 0;
 }
 
-.BoardHeader div {
+.BoardHeader div, .BoardHeader form {
     display: flex;
+    align-items: center;
 }
 
 .BoardHeader h1 {
     margin: 0;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+    max-width: 172px;
+    overflow-x: auto;
 }
 
 .LeftRightButtons, .LeftRightButtonsDark {
@@ -62,13 +63,13 @@
     max-height: 450px;
 }
 
-.DeleteButton, .DeleteButtonDark {
+.DeleteButton, .DeleteButtonDark, .EditButton, .EditButtonDark {
     background-color: transparent !important;
     border: none;
     cursor: pointer;
     color: #c0bfbf;
 }
 
-.DeleteButton:hover, .DeleteButtonDark:hover {
+.DeleteButton:hover, .DeleteButtonDark:hover, .EditButton:hover, .EditButtonDark:hover {
     color: #33ab9f;
 }
