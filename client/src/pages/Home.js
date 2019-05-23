@@ -173,6 +173,20 @@ class Home extends Component {
         }
     }
 
+    handleEditItem = (boardId, itemId, newItem) => {
+        const { setNotification } = this.props;
+        setNotification('');
+
+        if (!newItem) {
+            setNotification('The item must have content.');
+        }
+        else {
+            let newBoards = this.state.boards.map(board => ({...board}));
+            newBoards[boardId].items[itemId] = newItem;
+            this.setState({ boards: newBoards });
+        }
+    }
+
     handleReorderItem = (direction, boardId, itemId) => {
         const { setNotification } = this.props;
         setNotification('');
@@ -245,15 +259,6 @@ class Home extends Component {
         }
     }
     
-    handleEditItem = (newItem, boardId, itemId) => {
-        const { setNotification } = this.props;
-        setNotification('');
-        
-        let newBoards = this.state.boards.map(board => ({...board}));
-        newBoards[boardId].items[itemId] = newItem;
-        this.setState({ boards: newBoards });
-    }
-
     componentDidMount = () => {
         const { setNotification, authenticate } = this.props;
         authenticate();

@@ -13,6 +13,12 @@
     background-color: #474c50 !important;
 }
 
+.EditItem {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
 .Row {
     display: flex;
 }
@@ -20,6 +26,21 @@
 .Row p {
     padding-left: 10px;
     margin: 0;
+}
+
+.EditButton, .EditButtonDark {
+    background-color: transparent !important;
+    border: none;
+    cursor: pointer;
+    color: #c0bfbf;
+}
+
+.EditButtonDark {
+    color: white;
+}
+
+.EditButton:hover, .EditButtonDark:hover {
+    color: #33ab9f;
 }
 
 .UpDownButtons, .UpDownButtonsDark {

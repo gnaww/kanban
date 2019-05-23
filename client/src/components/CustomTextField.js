@@ -46,6 +46,9 @@ const CustomTextField = props => {
     else if (formType === "editBoard") {
         placeholder = "Edit board name";
     }
+    else if (formType === "editItem") {
+        placeholder = "Edit item content";
+    }
 
     return (
         <FormControl>
