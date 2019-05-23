@@ -1,5 +1,6 @@
 # Kanban Lite
 Kanban board website with user accounts, built using the FERN tech stack (**F**irebase, **E**xpress, **R**eact, **N**odeJS).
+
 Currently live at https://kanbanlite.herokuapp.com!
 
 ## Features
