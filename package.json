@@ -21,9 +21,9 @@
   "homepage": "https://github.com/gnaww/kanban#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "connect-session-firebase": "^5.13.0",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "express-session": "^1.16.1",
     "firebase-admin": "^7.3.0",
     "path": "^0.12.7",
